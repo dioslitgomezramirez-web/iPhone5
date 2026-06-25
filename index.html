@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>iPhone 5 Blanco - iOS 6 (Ultimate Edition)</title>
+    <style>
+        /* =========================================
+           VARIABLES Y CONFIGURACIÓN GLOBAL
+           ========================================= */
+        :root {
+            --screen-brightness: 1;
+            /* Wallpaper clásico iOS 6 */
+            --wallpaper: url('https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=640&auto=format&fit=crop');
+            --linen-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100" height="100" fill="%23444" filter="url(%23noise)" opacity="0.5"/><rect width="100" height="100" fill="%23222" opacity="0.6"/></svg>');
+            --pinstripe: repeating-linear-gradient(0deg, #d9dfe5, #d9dfe5 2px, #e4e9ed 2px, #e4e9ed 4px);
+            --leather: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100" height="100" fill="%233a2510" filter="url(%23noise)" opacity="0.3"/><rect width="100" height="100" fill="%232a1a0b" opacity="0.8"/></svg>');
+        }
+
+        * {
+            box-sizing: border-box; user-select: none; -webkit-user-select: none;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0; padding: 0; -webkit-tap-highlight-color: transparent;
+        }
+
+        body { background-color: #111; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; perspective: 1000px; }
+
+        /* =========================================
+           HARDWARE: IPHONE 5 BLANCO/PLATA
+           ========================================= */
+        #iphone-wrapper { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; }
+
+        #iphone-hardware {
+            width: 340px; height: 740px;
+            background: #f9f9f9; /* Cristal Frontal Blanco */
+            border-radius: 45px; position: relative;
+            box-shadow: 
+                inset 0 0 0 3px #f4f4f4, 
+                inset 0 0 0 6px #d1d5d8, /* Borde Plata/Aluminio */
+                inset 0 0 0 8px #b5babc, 
+                inset 0 0 15px rgba(0,0,0,0.1), 
+                0 20px 50px rgba(0,0,0,0.5);
+            border: 2px solid #e0e0e0; display: flex; justify-content: center; align-items: center; 
+            transition: transform 0.3s ease; transform-origin: center center;
+        }
+
+        /* Bandas de antena iPhone 5 (plata en el modelo blanco) */
+        .antenna { position: absolute; background: #d1d5d8; }
+        .antenna.top-left { top: 60px; left: -2px; width: 6px; height: 4px; }
+        .antenna.top-right { top: 60px; right: -2px; width: 6px; height: 4px; }
+        .antenna.bottom-left { bottom: 60px; left: -2px; width: 6px; height: 4px; }
+        .antenna.bottom-right { bottom: 60px; right: -2px; width: 6px; height: 4px; }
+
+        /* Elementos frontales */
+        #camera-front { position: absolute; top: 35px; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #333, #000); border: 1px solid #111; box-shadow: inset 0 0 2px rgba(255,255,255,0.2); }
+        #speaker { position: absolute; top: 60px; left: 50%; transform: translateX(-50%); width: 50px; height: 12px; border-radius: 6px; background: #ddd; border: 1px solid #999; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); background-image: repeating-linear-gradient(90deg, transparent, transparent 1px, #888 1px, #888 2px); }
+        #proximity-sensor { position: absolute; top: 48px; left: 50%; transform: translateX(-20px); width: 8px; height: 8px; border-radius: 50%; background: rgba(10,10,10,0.2); }
+        
+        #home-button { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #fff, #f0f0f0); border: 1px solid #d1d5d8; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05), 0 1px 1px rgba(0,0,0,0.1); cursor: pointer; z-index: 9999; }
+        #home-button::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 18px; height: 18px; border-radius: 4px; border: 2px solid #aaa; }
+        #home-button:active { box-shadow: inset 0 4px 8px rgba(0,0,0,0.1); }
+
+        /* Botones laterales (Plata) */
+        .side-btn { position: absolute; background: #e0e0e0; border: 1px solid #b5babc; border-radius: 2px; cursor: pointer; }
+        .btn-mute { top: 80px; left: -4px; width: 4px; height: 25px; background:#d1d5d8;}
+        .btn-vol-up { top: 130px; left: -4px; width: 4px; height: 25px; border-radius: 50%; }
+        .btn-vol-down { top: 170px; left: -4px; width: 4px; height: 25px; border-radius: 50%; }
+        .btn-power { top: -4px; right: 60px; width: 45px; height: 4px; border-radius: 2px 2px 0 0; background: linear-gradient(to right, #d1d5d8, #e0e0e0, #d1d5d8); box-shadow: 0 -1px 2px rgba(0,0,0,0.2); }
+        .btn-power:active { transform: translateY(1px); }
+
+        /* =========================================
+           PANTALLA Y SISTEMA OPERATIVO (iPhone 5: 320x568)
+           ========================================= */
+        #screen-glass {
+            width: 320px; height: 568px; background: #000; position: relative; overflow: hidden; border: 2px solid #050505;
+            filter: brightness(var(--screen-brightness)); transition: filter 0.2s ease;
+        }
+        
+        /* Clase para apagar la pantalla en negro puro */
+        #screen-glass.screen-off { filter: brightness(0) !important; }
+
+        #screen-glass::before { content: ''; position: absolute; top: 0; left: -50%; right: -50%; height: 50%; background: linear-gradient(rgba(255,255,255,0.06), transparent); transform: rotate(-15deg); pointer-events: none; z-index: 10000; }
+
+        /* Barra de estado iOS 6 */
+        #status-bar {
+            height: 20px; background: rgba(0,0,0,0.4); color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 0 5px; font-size: 12px; font-weight: bold; text-shadow: 0 1px 1px rgba(0,0,0,0.8); position: absolute; top: 0; left: 0; right: 0; z-index: 9000; transition: background 0.3s;
+        }
+        #status-bar.black { background: #000; }
+        #status-bar.blue { background: linear-gradient(to bottom, #b4c2d3 0%, #8ca1ba 50%, #7c94b0 51%, #6985a5 100%); text-shadow: 0 -1px 0 rgba(0,0,0,0.5); }
+        #status-bar.silver { background: linear-gradient(to bottom, #f4f5f7, #c4cbd4); color: #000; text-shadow: 0 1px 0 #fff; }
+        
+        .status-left, .status-right { display: flex; align-items: center; gap: 4px; }
+        .signal-bars { display: flex; align-items: flex-end; height: 10px; gap: 1px; }
+        .signal-bar { width: 3px; background: currentColor; }
+        .battery-icon { width: 22px; height: 10px; border: 1px solid currentColor; padding: 1px; position: relative; }
+        .battery-icon::after { content: ''; position: absolute; right: -3px; top: 2px; width: 2px; height: 4px; background: currentColor; }
+        .battery-level { height: 100%; background: currentColor; width: 80%; }
+
+        .view { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; background: #fff; }
+        .view.active { display: block; }
+        .view.has-status-bar { top: 20px; height: calc(100% - 20px); }
+
+        /* --- PANTALLA DE BLOQUEO --- */
+        #lock-screen { background-image: var(--wallpaper); background-size: cover; background-position: center; z-index: 8000; transition: transform 0.4s ease; }
+        #ls-time-container { background: rgba(0,0,0,0.4); border-top: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2); text-align: center; padding: 10px 0; margin-top: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.3);}
+        #ls-time { font-size: 65px; color: #fff; font-weight: 200; letter-spacing: -2px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); margin-top:-5px;}
+        #ls-date { font-size: 14px; color: #fff; font-weight: bold; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+        
+        #slider-area { position: absolute; bottom: 20px; left: 0; width: 100%; display: flex; align-items: center; padding: 0 15px; gap: 10px; }
+        #slider-container { flex-grow: 1; height: 48px; background: rgba(0,0,0,0.5); border-radius: 10px; border: 1px solid #444; display: flex; align-items: center; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); position: relative; }
+        #slider-text { position: absolute; width: 100%; text-align: center; color: #aaa; font-size: 16px; font-weight: normal; pointer-events: none; background: linear-gradient(90deg, #888, #fff, #888); background-size: 200% auto; color: transparent; -webkit-background-clip: text; animation: shine 2.5s linear infinite; text-shadow:none;}
+        @keyframes shine { to { background-position: 200% center; } }
+        #slider-thumb { width: 60px; height: 44px; background: linear-gradient(to bottom, #e2e2e2, #999); border-radius: 8px; margin-left: 2px; border: 1px solid #555; box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 4px rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; z-index: 10; }
+        #slider-thumb::after { content: '▶'; color: #444; font-size: 18px; text-shadow: 0 1px 0 rgba(255,255,255,0.5); }
+        
+        #ls-camera-btn { width: 35px; height: 30px; background: rgba(0,0,0,0.5); border-radius: 5px; border: 1px solid #555; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); position:relative; overflow:hidden;}
+        #ls-camera-btn svg { width: 20px; height: 15px; }
+
+        /* --- PANTALLA DE INICIO (5 Filas para iPhone 5) --- */
+        #home-screen { background-image: var(--wallpaper); background-size: cover; background-position: center; z-index: 1000; }
+        .page-container { display: flex; width: 200%; height: calc(100% - 90px); transition: transform 0.3s ease-out; }
+        .page { width: 50%; height: 100%; padding: 10px 15px; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 75px); gap: 10px 15px; align-content:start;}
+        
+        #dock { position: absolute; bottom: 0; width: 100%; height: 90px; background: rgba(255,255,255,0.1); display: flex; justify-content: space-around; padding: 15px 15px 0 15px; border-top: 1px solid rgba(255,255,255,0.3); perspective: 500px; z-index: 500; }
+        #dock::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,0.4) 41%, rgba(0,0,0,0.8) 100%); transform: rotateX(45deg); transform-origin: bottom; box-shadow: 0 -2px 10px rgba(255,255,255,0.3); z-index: -1; pointer-events: none; }
+
+        /* ICONOS iOS 6 (Eskeumorfismo Puro SVG) */
+        .icon-wrap { display: flex; flex-direction: column; align-items: center; cursor: pointer; position: relative; }
+        .icon { width: 58px; height: 58px; border-radius: 12px; box-shadow: 0 3px 5px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.5); position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; background-color: #fff; }
+        .icon::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 55%; background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.1) 100%); border-bottom-left-radius: 50% 15%; border-bottom-right-radius: 50% 15%; z-index: 10; pointer-events: none; }
+        .icon-text { color: #fff; font-size: 11px; font-weight: bold; margin-top: 3px; text-shadow: 0 1px 2px rgba(0,0,0,0.8); white-space: nowrap; }
+        .icon svg { width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 1; }
+        
+        .icon-messages { background: linear-gradient(to bottom, #7df54e, #1ab000); }
+        .icon-calendar { background: #fff; display: flex; flex-direction: column; z-index: 2;}
+        .icon-calendar-top { background: linear-gradient(to bottom, #d6494b, #8a1315); height: 14px; width: 100%; color: #fff; font-size: 8px; text-align: center; font-weight: bold; line-height: 14px; z-index:2; border-bottom:1px solid #444; text-shadow:0 -1px 0 rgba(0,0,0,0.5);}
+        .icon-calendar-day { color: #333; font-size: 34px; font-weight: bold; margin-top: -3px; z-index:2; letter-spacing:-2px;}
+        .icon-photos { background: #cde2ec; }
+        .icon-camera { background: linear-gradient(to bottom, #d6d6d6, #888); border: 1px solid #666; }
+        .icon-videos { background: linear-gradient(to bottom, #4cb0ea, #1377b8); }
+        .icon-maps { background: #e3e0ce; }
+        .icon-weather { background: linear-gradient(to bottom, #4cb0ea, #1377b8); }
+        .icon-passbook { background: #fff; }
+        .icon-notes { background: #fdf6ba; border-top: 12px solid #5a3d1b; }
+        .icon-reminders { background: #fff; }
+        .icon-clock { background: #000; border: 2px solid #fff; }
+        .icon-gamecenter { background: #fff; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+        .icon-newsstand { background: linear-gradient(to bottom, #e3c494, #9a6d36); }
+        .icon-itunes { background: linear-gradient(to bottom, #d664d4, #8b1399); }
+        .icon-appstore { background: linear-gradient(to bottom, #4cb0ea, #1377b8); }
+        .icon-settings { background: repeating-linear-gradient(45deg, #777, #777 5px, #888 5px, #888 10px); }
+        .icon-calculator { background: #222; }
+        .icon-compass { background: #222; }
+        .icon-voicememos { background: linear-gradient(to bottom, #444, #111); }
+        .icon-stocks { background: linear-gradient(to bottom, #4cb0ea, #1377b8); }
+
+        .icon-phone { background: linear-gradient(to bottom, #7df54e, #1ab000); }
+        .icon-mail { background: linear-gradient(to bottom, #8db6f6, #3b74d6); }
+        .icon-safari { background: #fff; }
+        .icon-music { background: linear-gradient(to bottom, #ff9421, #d65c00); }
+
+        /* UI COMPONENTS iOS 6 */
+        .ios-header { height: 44px; background: linear-gradient(to bottom, #b4c2d3 0%, #8ca1ba 50%, #7c94b0 51%, #6985a5 100%); border-bottom: 1px solid #2d3e52; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; color: #fff; font-weight: bold; text-shadow: 0 -1px 0 rgba(0,0,0,0.5); z-index: 100; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+        .ios-btn { background: linear-gradient(to bottom, #8fa3b8 0%, #6882a0 50%, #577395 51%, #4b6a8e 100%); border: 1px solid #2d3e52; border-radius: 4px; padding: 5px 10px; color: #fff; font-size: 12px; font-weight: bold; text-shadow: 0 -1px 0 rgba(0,0,0,0.5); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 1px rgba(0,0,0,0.2); cursor: pointer; }
+        .ios-btn:active { background: #4b6a8e; }
+        
+        .app-window { position: absolute; top: 20px; left: 0; width: 100%; height: calc(100% - 20px); background: #fff; z-index: 5000; transform: scale(0.8); opacity: 0; pointer-events: none; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1), opacity 0.2s ease; display:flex; flex-direction:column; }
+        .app-window.open { transform: scale(1); opacity: 1; pointer-events: all; }
+
+        .bottom-nav { height:50px; background:linear-gradient(to bottom, #111, #000); display:flex; justify-content:space-around; align-items:center; border-top:1px solid #333; z-index:100; }
+        .bottom-nav-item { color:#aaa; font-size:10px; text-align:center; display:flex; flex-direction:column; align-items:center; cursor:pointer;}
+        .bottom-nav-item.active { color:#fff; }
+
+        /* Multitarea */
+        #multitasking { position: absolute; bottom: -100px; width: 100%; height: 90px; background-image: var(--linen-texture); z-index: 7000; display: flex; align-items: center; padding: 0 10px; gap: 15px; transition: bottom 0.3s ease; box-shadow: inset 0 5px 10px rgba(0,0,0,0.8); border-top: 2px solid #111; overflow-x: auto; }
+        #multitasking.open { bottom: 0; }
+        .mt-icon-wrap { position: relative; flex-shrink: 0;}
+        .mt-badge { position: absolute; top: -5px; left: -5px; width: 20px; height: 20px; background: red; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 2px solid white; font-size: 12px; display: none; cursor: pointer; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.5);}
+        .mt-icon-wrap.edit-mode .mt-badge { display: flex; }
+        .mt-icon-wrap.edit-mode .icon { animation: wiggle 0.3s infinite; }
+        @keyframes wiggle { 0% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } 100% { transform: rotate(-3deg); } }
+
+        /* ==================== APPS ==================== */
+
+        /* Settings */
+        #app-settings { background: var(--pinstripe); overflow-y:auto; }
+        .settings-group { margin: 15px 10px; border: 1px solid #aaa; border-radius: 10px; background: #fff; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .settings-group li { padding: 12px 15px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: bold; color:#000; }
+        .settings-group li:last-child { border-bottom: none; }
+        .set-icon { width: 28px; height: 28px; border-radius: 6px; display:inline-flex; justify-content:center; align-items:center; margin-right: 15px; box-shadow: inset 0 1px 1px rgba(255,255,255,0.5); }
+        .ios-toggle { width: 76px; height: 28px; background: linear-gradient(to bottom, #ddd, #fff); border: 1px solid #999; border-radius: 14px; position: relative; overflow: hidden; box-shadow: inset 0 1px 4px rgba(0,0,0,0.3); cursor: pointer; }
+        .ios-toggle-inner { display: flex; width: 120px; height: 100%; transition: transform 0.2s ease-out; transform: translateX(-44px); }
+        .ios-toggle.on .ios-toggle-inner { transform: translateX(0); }
+        .ios-toggle-on { width: 48px; background: linear-gradient(to bottom, #2b7af0, #4c9ef5); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; text-shadow: 0 -1px 0 rgba(0,0,0,0.4); box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); }
+        .ios-toggle-thumb { width: 28px; height: 26px; background: linear-gradient(to bottom, #fff, #ddd); border: 1px solid #888; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.4); z-index: 2; }
+        .ios-toggle-off { width: 48px; background: #eee; color: #777; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); }
+        
+        #wp-picker-view { display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:var(--pinstripe); z-index:100; flex-direction:column;}
+        #wallpaper-picker { display:grid; grid-template-columns: 1fr 1fr; gap:15px; padding:15px; overflow-y:auto; flex-grow:1;}
+        .wp-thumb { width:100%; height:160px; background-size:cover; background-position:center; border:2px solid #999; border-radius:6px; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.3);}
+
+        /* Phone */
+        #app-phone { background: #000; color: #000; }
+        #phone-display { height: 85px; background:#e8e8e8; font-size: 40px; text-align: center; padding-top: 25px; font-weight: 200; border-bottom:1px solid #999; letter-spacing:1px;}
+        #phone-keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; flex-grow:1; background:#999; padding: 0;}
+        .dial-btn { width: 100%; height: 100%; background: linear-gradient(to bottom, #fdfdfd, #e2e2e2); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; box-shadow: inset 0 1px 0 #fff; border-radius:0; border:none;}
+        .dial-btn:active { background: #ccc; }
+        .dial-num { font-size: 36px; font-weight: 200; line-height: 1; color:#000; text-shadow:0 1px 0 #fff;}
+        .dial-letters { font-size: 10px; color: #666; font-weight: bold; letter-spacing: 2px; text-transform:uppercase;}
+        .call-btn { background: linear-gradient(to bottom, #74ea54, #2ebf0c); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);}
+
+        /* Camera */
+        #app-camera { background: #000; position: relative; }
+        #camera-view { width: 100%; height: calc(100% - 90px); object-fit: cover; background: #000; }
+        #camera-top-bar { position:absolute; top:0; left:0; width:100%; height:44px; background:rgba(0,0,0,0.5); display:flex; justify-content:space-between; align-items:center; padding:0 10px; z-index:20;}
+        #camera-controls { position: absolute; bottom: 0; width: 100%; height: 90px; background: linear-gradient(to bottom, #444, #111); display: flex; justify-content: space-between; align-items: center; padding:0 20px; border-top: 1px solid #555; z-index:20;}
+        
+        .cam-switch-container { width: 60px; height: 30px; background: #000; border-radius: 15px; border: 1px solid #333; position: relative; display:flex; align-items:center; cursor:pointer;}
+        .cam-switch-thumb { position:absolute; left:2px; width:26px; height:24px; background:linear-gradient(to bottom, #fff, #aaa); border-radius:12px; transition:transform 0.2s; box-shadow:0 1px 2px #000; display:flex; justify-content:center; align-items:center; font-size:12px;}
+        .cam-switch-container.video .cam-switch-thumb { transform: translateX(28px); }
+        
+        #shutter-btn-wrap { width:70px; height:70px; display:flex; justify-content:center; align-items:center; position:relative;}
+        #shutter-btn { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(to bottom, #e2e2e2, #999); border: 4px solid #fff; box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 2px 5px #000; cursor: pointer; transition: all 0.2s;}
+        #shutter-btn:active { transform:scale(0.95); }
+        #shutter-btn.recording { border-radius:10px; width:40px; height:40px; background:#f00; border:2px solid #fff; animation: pulseRed 1s infinite;}
+        @keyframes pulseRed { 0% {box-shadow:0 0 5px #f00;} 50% {box-shadow:0 0 20px #f00;} 100% {box-shadow:0 0 5px #f00;} }
+        
+        .camera-iris { position: absolute; top:0; left:0; width:100%; height: calc(100% - 90px); background: #000; opacity: 0; pointer-events: none; transition: opacity 0.1s; z-index:10;}
+        .camera-iris.blink { opacity: 1; }
+        #camera-canvas { display:none; }
+
+        /* Photos */
+        #app-photos { background: #fff; }
+        #photos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 2px; overflow-y:auto; flex-grow:1;}
+        .photo-thumb { width: 100%; aspect-ratio: 1; object-fit: cover; background: #eee; cursor: pointer; position:relative;}
+        .photo-thumb.video::before { content:'▶'; position:absolute; bottom:2px; left:5px; color:#fff; font-size:12px; text-shadow:0 1px 2px #000;}
+        #photo-viewer { position: absolute; top:0; left:0; width:100%; height:100%; background: #000; display:none; flex-direction: column; z-index: 6000; }
+        #photo-full { flex-grow: 1; object-fit: contain; width: 100%; }
+        #video-full { flex-grow: 1; width: 100%; object-fit:contain; display:none;}
+
+        /* Maps */
+        #app-maps { background: #e3e0ce; }
+        #maps-frame { flex-grow:1; border:none; width:100%; }
+
+        /* Weather */
+        #app-weather { background: linear-gradient(to bottom, #195280, #5c9dd6); color: #fff; }
+        .weather-top { padding: 30px 20px; text-align: center; text-shadow: 0 1px 2px rgba(0,0,0,0.5); border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .weather-list { flex-grow: 1; background: rgba(0,0,0,0.2); overflow-y:auto;}
+        .w-item { display: flex; justify-content: space-between; padding: 10px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: bold; }
+
+        /* Reminders */
+        #app-reminders { background: var(--leather); }
+        .reminders-paper { margin: 20px; flex-grow: 1; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); overflow: hidden; display: flex; flex-direction: column; }
+        .reminders-list { flex-grow:1; background: repeating-linear-gradient(#fff, #fff 39px, #e0e0e0 40px); list-style:none; padding:0; margin:0; }
+        .reminders-list li { height: 40px; line-height: 40px; padding: 0 15px; font-family: 'Marker Felt', cursive; font-size: 20px; color: #333; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid transparent; }
+        .rem-check { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #ccc; background: linear-gradient(to bottom, #fff, #eee); cursor:pointer;}
+        .rem-check.done { background: #888; text-align:center; line-height:16px; color:#fff; font-size:14px; }
+        .rem-check.done::after { content: '✓'; }
+
+        /* Calculator */
+        #app-calculator { background: #000; }
+        #calc-display { height: 100px; background: linear-gradient(to bottom, #d0d0d0, #eee); text-align: right; font-size: 55px; padding: 20px 10px; font-family: 'Helvetica Neue', Helvetica, sans-serif; font-weight:200; overflow: hidden; color:#000;}
+        #calc-keys { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 1fr); flex-grow: 1; gap: 1px; background: #000; }
+        .calc-btn { border: none; font-size: 28px; font-weight: bold; cursor: pointer; border-radius:0; box-shadow:inset 0 1px 0 rgba(255,255,255,0.2);}
+        .calc-btn:active { filter:brightness(0.7);}
+        .calc-btn.grey { background: linear-gradient(to bottom, #d6d6d6, #b0b0b0); color: #000; text-shadow:0 1px 0 rgba(255,255,255,0.5);}
+        .calc-btn.dark { background: linear-gradient(to bottom, #555, #333); color: #fff; text-shadow:0 -1px 0 rgba(0,0,0,0.5);}
+        .calc-btn.orange { background: linear-gradient(to bottom, #f39c12, #e67e22); color: #fff; text-shadow:0 -1px 0 rgba(0,0,0,0.5);}
+        .calc-btn.zero { grid-column: span 2; }
+
+        /* Notes */
+        #app-notes { background: #fdf6ba; position: relative; }
+        .notes-header { background: linear-gradient(to bottom, #5a4b3d, #3c2a1c); border-bottom: 2px solid #222; }
+        #notes-list { height: calc(100% - 44px); overflow-y: auto; background: repeating-linear-gradient(#fdf6ba, #fdf6ba 39px, #e4d79d 40px); }
+        .note-item { padding: 10px 15px; border-bottom: 1px solid transparent; font-family: 'Marker Felt', 'Comic Sans MS', cursive; font-size: 20px; color: #333; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        #note-editor { position: absolute; top: 44px; left: 0; width: 100%; height: calc(100% - 44px); background: repeating-linear-gradient(#fdf6ba, #fdf6ba 39px, #e4d79d 40px); display: none; }
+        #note-textarea { width: 100%; height: 100%; background: transparent; border: none; padding: 5px 15px; font-family: 'Marker Felt', 'Comic Sans MS', cursive; font-size: 20px; line-height: 40px; color: #333; resize: none; outline: none; }
+
+        /* Safari */
+        #app-safari { background: #fff; }
+        .safari-bar { height: 44px; background: linear-gradient(to bottom, #b4c2d3, #7c94b0); display: flex; align-items: center; padding: 0 10px; border-bottom: 1px solid #444;}
+        #safari-url { flex-grow: 1; height: 26px; border-radius: 13px; border: 1px solid #555; padding: 0 15px; font-size: 14px; margin: 0 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);}
+        #safari-frame { flex-grow: 1; border: none; width: 100%; background: #fff; }
+
+        /* Stocks, Clock, Messages, Music */
+        #app-stocks { background: #000; color: #fff; }
+        .stock-item { display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #333; align-items: center; }
+        .stock-name { font-size: 20px; font-weight: bold; }
+        .stock-badge { background: linear-gradient(to bottom, #74ea54, #2ebf0c); padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 16px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.4); }
+        .stock-badge.red { background: linear-gradient(to bottom, #ea5454, #bf0c0c); }
+        
+        #app-clock { background: #000; }
+        #clock-list { flex-grow: 1; overflow-y: auto; background: #000; }
+        .alarm-item { border-bottom: 1px solid #333; padding: 15px; display: flex; justify-content: space-between; align-items: center; color: #fff; }
+        .alarm-time { font-size: 40px; font-weight: 200; }
+        .alarm-label { font-size: 14px; color: #888; }
+        
+        #app-messages { background: #cbd2d8; }
+        #msg-chat { flex-grow: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 10px; }
+        .msg-bubble { max-width: 75%; padding: 10px 15px; border-radius: 15px; font-size: 15px; position: relative; word-wrap: break-word; }
+        .msg-bubble.sent { background: linear-gradient(to bottom, #74ea54, #2ebf0c); color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; border: 1px solid #209307; box-shadow: inset 0 1px 0 rgba(255,255,255,0.4); }
+        .msg-bubble.received { background: linear-gradient(to bottom, #f4f4f4, #d5d5d5); color: #000; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid #aaa; box-shadow: inset 0 1px 0 #fff; }
+        #msg-input-area { padding: 10px; background: linear-gradient(to bottom, #b4c2d3, #7c94b0); display: flex; gap: 10px; border-top: 1px solid #444; }
+        #msg-input { flex-grow: 1; border-radius: 15px; border: 1px solid #555; padding: 5px 10px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); }
+        #msg-send { background: linear-gradient(to bottom, #8fa3b8, #4b6a8e); border: 1px solid #2d3e52; border-radius: 15px; color: #fff; font-weight: bold; padding: 0 15px; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,0.4); }
+
+        #app-music { background: #fff; }
+        #music-search-bar { padding: 8px; background: linear-gradient(to bottom, #b4c2d3, #7c94b0); border-bottom: 1px solid #444; }
+        #music-search-input { width: 100%; border-radius: 14px; border: 1px solid #555; padding: 4px 10px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); }
+        #music-list { flex-grow: 1; overflow-y: auto; background: #fff; }
+        .music-item { display: flex; padding: 10px; border-bottom: 1px solid #ddd; cursor: pointer; align-items: center; color:#000;}
+        .music-item img { width: 40px; height: 40px; border-radius: 4px; margin-right: 10px; border: 1px solid #ccc; }
+        #music-player { height: 60px; background: linear-gradient(to bottom, #444, #111); border-top: 1px solid #000; display: flex; align-items: center; padding: 0 10px; color: #fff; }
+        #music-player-cover { width: 40px; height: 40px; border-radius: 4px; border: 1px solid #555; margin-right: 10px; background: #222; }
+
+        .static-app-view { background: #fff; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #666; text-align: center; padding: 20px; }
+
+        /* Siri (Scroll arreglado y caja de texto) */
+        #siri-overlay { position: absolute; bottom: -100%; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 11000; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1); display: flex; flex-direction: column; }
+        #siri-overlay.active { bottom: 0; }
+        #siri-texture { position: absolute; top:0; left:0; width:100%; height:100%; background-image: var(--linen-texture); opacity: 0.7; z-index: -1; }
+        
+        #siri-content { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; justify-content: flex-start; }
+        .siri-bubble { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 15px; color: #fff; margin-bottom: 15px; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.5); max-width:85%; line-height:1.4;}
+        .siri-bubble:first-child { margin-top: auto; } /* Esto empuja los elementos abajo permitiendo scroll arriba */
+
+        #siri-input-container { padding: 10px; background: rgba(0,0,0,0.6); border-top: 1px solid rgba(255,255,255,0.2); display:flex; gap:10px;}
+        #siri-text-input { flex-grow:1; border-radius:15px; border:none; padding:8px 15px; font-size:14px; outline:none; background:rgba(255,255,255,0.9); }
+        #siri-mic-area { height: 90px; display: flex; justify-content: center; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); background: linear-gradient(to top, #111, transparent); position: relative;}
+        #siri-mic { width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle, #cc00ff, #3b008a); border: 2px solid #fff; box-shadow: 0 0 15px #cc00ff; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: transform 0.2s; }
+        #siri-mic::before { content: '🎤'; font-size: 24px; }
+        #siri-mic.listening { animation: pulse 1s infinite; background: radial-gradient(circle, #ff0055, #8a0000); box-shadow: 0 0 30px #ff0055;}
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        /* Alertas Custom */
+        #ios-alert-overlay { display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:30000; justify-content:center; align-items:center; }
+        .ios-alert-box { width:260px; background:linear-gradient(to bottom, #2b394d, #141c2b); border:2px solid #fff; border-radius:10px; color:#fff; text-align:center; padding:20px; box-shadow:0 5px 15px rgba(0,0,0,0.8); }
+
+        /* Animación de encendido (Fondo blanco, Manzana Negra para iPhone blanco) */
+        #boot-screen { position: absolute; top:0; left:0; width:100%; height:100%; background:#f9f9f9; z-index: 20000; display:flex; justify-content:center; align-items:center; transition: opacity 0.5s; }
+        #apple-logo { color: #000; font-size: 70px; }
+    </style>
+</head>
+<body>
+
+    <div id="iphone-wrapper">
+        <div id="iphone-hardware">
+            <div class="antenna top-left"></div><div class="antenna top-right"></div>
+            <div class="antenna bottom-left"></div><div class="antenna bottom-right"></div>
+            
+            <div class="side-btn btn-power" id="btn-power"></div>
+            <div class="side-btn btn-mute"></div>
+            <div class="side-btn btn-vol-up" onclick="SystemSounds.play('click')"></div>
+            <div class="side-btn btn-vol-down" onclick="SystemSounds.play('click')"></div>
+
+            <!-- Cámara arriba del altavoz (iPhone 5) -->
+            <div id="camera-front"></div>
+            <div id="speaker"></div>
+            <div id="proximity-sensor"></div>
+            
+            <div id="screen-glass">
+                
+                <div id="status-bar" class="black">
+                    <div class="status-left">
+                        <div class="signal-bars"><div class="signal-bar" style="height: 4px;"></div><div class="signal-bar" style="height: 6px;"></div><div class="signal-bar" style="height: 8px;"></div><div class="signal-bar" style="height: 10px;"></div><div class="signal-bar" style="height: 10px; opacity:0.3"></div></div>
+                        <span>AT&T</span>
+                        <svg width="12" height="12" viewBox="0 0 100 100" style="margin-left:2px;"><path d="M50,10 A40,40 0 0,0 10,50 M50,30 A20,20 0 0,0 30,50 M50,50 A5,5 0 0,0 45,55 M70,50 A20,20 0 0,0 50,30 M90,50 A40,40 0 0,0 50,10" fill="none" stroke="#fff" stroke-width="8"/><circle cx="50" cy="80" r="10" fill="#fff"/></svg>
+                    </div>
+                    <div id="status-time">12:00 PM</div>
+                    <div class="status-right"><span>100%</span><div class="battery-icon"><div class="battery-level"></div></div></div>
+                </div>
+
+                <div id="lock-screen" class="view active">
+                    <div id="ls-time-container"><div id="ls-time">12:00</div><div id="ls-date">Lunes, 9 de Enero</div></div>
+                    <div id="slider-area">
+                        <div id="slider-container">
+                            <div id="slider-thumb"></div><div id="slider-text">slide to unlock</div>
+                        </div>
+                        <div id="ls-camera-btn" onclick="unlockPhone(); AppManager.open('camera')">
+                            <svg viewBox="0 0 100 100"><rect x="15" y="30" width="70" height="45" rx="5" fill="#fff"/><circle cx="50" cy="52" r="16" fill="#000"/><circle cx="50" cy="52" r="8" fill="#333"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="home-screen" class="view has-status-bar">
+                    <div class="page-container" id="pages">
+                        <div class="page">
+                            <!-- Fila 1 -->
+                            <div class="icon-wrap" onclick="AppManager.open('messages')"><div class="icon icon-messages"><svg viewBox="0 0 100 100"><defs><linearGradient id="msgGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7bf44d"/><stop offset="100%" stop-color="#1cad00"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#msgGrad)"/><path fill="#fff" d="M15,50 C15,25 50,20 85,35 C95,45 90,65 75,70 L75,85 L60,75 C45,80 15,75 15,50 Z"/></svg></div><div class="icon-text">Messages</div></div>
+                            <div class="icon-wrap" onclick="AppManager.open('calendar')"><div class="icon icon-calendar"><div class="icon-calendar-top">THU</div><div class="icon-calendar-day">13</div></div><div class="icon-text">Calendar</div></div>
+                            <div class="icon-wrap" onclick="AppManager.open('photos')"><div class="icon icon-photos"><svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#cde2ec"/><g transform="translate(50,50) scale(0.95)"><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(0)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(30)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(60)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(90)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(120)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(150)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(180)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(210)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(240)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(270)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(300)"/><ellipse cx="0" cy="-22" rx="7" ry="20" fill="#fbd126" transform="rotate(330)"/><circle cx="0" cy="0" r="14" fill="#3a2505"/></g></svg></div><div class="icon-text">Photos</div></div>
+                            <div class="icon-wrap" onclick="AppManager.open('camera')"><div class="icon icon-camera"><svg viewBox="0 0 100 100"><defs><radialGradient id="camLens" cx="50%" cy="50%" r="50%"><stop offset="60%" stop-color="#111"/><stop offset="80%" stop-color="#333"/><stop offset="100%" stop-color="#555"/></radialGradient></defs><rect x="15" y="30" width="70" height="45" rx="5" fill="#444"/><circle cx="50" cy="52" r="18" fill="url(#camLens)"/><circle cx="50" cy="52" r="8" fill="#000"/><circle cx="53" cy="49" r="2" fill="#fff" opacity="0.6"/><rect x="70" y="35" width="8" height="4" rx="1" fill="#222"/></svg></div><div class="icon-text">Camera</div></div>
+                            
+                            <!-- Fila 2 -->
+                            <div class="icon-wrap" onclick="CustomAlert.show('Videos', 'Sin videos sincronizados.')"><div class="icon icon-videos"><svg viewBox="0 0 100 100"><defs><linearGradient id="vid" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#8fd4f8"/><stop offset="100%" stop-color="#0e437c"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#vid)"/><polygon points="0,15 100,15 100,35 0,35" fill="#222"/><polygon points="10,15 25,35 40,15 55,35 70,15 85,35 100,15" fill="#fff"/></svg></div><div class="icon-text">Videos</div></div>
+                            <div class="icon-wrap" onclick="AppManager.open('maps')"><div class="icon icon-maps"><svg viewBox="0 0 100 100"><path d="M0,20 L33,10 L66,20 L100,10 L100,90 L66,100 L33,90 L0,100 Z" fill="#ebdcb4"/><path d="M33,10 L66,20 L66,100 L33,90 Z" fill="#dfd0a4"/><line x1="33" y1="10" x2="33" y2="90" stroke="#ccc" stroke-width="2"/><line x1="66" y1="20" x2="66" y2="100" stroke="#ccc" stroke-width="2"/><path d="M10,40 L90,60" stroke="#f6da73" stroke-width="8"/><path d="M10,40 L90,60" stroke="#fff" stroke-width="2"/><circle cx="50" cy="50" r="8" fill="#d21515"/><circle cx="50" cy="50" r="3" fill="#600"/><path d="M50,50 L50,65" stroke="#d21515" stroke-width="2"/><rect x="65" y="15" width="20" height="15" rx="2" fill="#2b508f"/><text x="67" y="26" fill="#fff" font-size="9" font-weight="bold">280</text></svg></div><div class="icon-text">Maps</div></div>
+                            <div class="icon-wrap" onclick="AppManager.open('weather')"><div class="icon icon-weather"><svg viewBox="0 0 100 100"><circle cx="35" cy="40" r="22" fill="#ffde00"/><path d="M30,65 Q30,48 45,48 Q50,38 65,38 Q80,38 80,53 Q95,53 90,68 Z" fill="#fff"/><text x="10" y="85" font-size="18" fill="#fff" font-weight="bold">73°</text></svg></div><div class="icon-text">Weather</div></div>
+                            <div class="icon-wrap" onclick="CustomAlert.show('Passbook', 'App de Passbook de iOS 6')"><div class="icon icon-passbook"><svg viewBox="0 0 100 100"><rect x="10" y="15" width="80" height="70" rx="5" fill="#f09622"/><rect x="10" y="35" width="80" height="50" rx="5" fill="#69b52a"/><rect x="10" y="55" width="80" height="30" rx="5" fill="#2a80b5"/><circle cx="50" cy="70" r="8" fill="#fff"/></svg></div><div class="icon-text">Passbook</div></div>
+                            
+                            <!-- Fila 3 -->
+                            <div class="icon-wrap" onclick="AppManager.open('notes')"><div class="icon icon-notes"><svg viewBox="0 0 100 100"><line x1="15" y1="35" x2="85" y2="35" stroke="#d5c898" stroke-width="2"/><line x1="15" y1="55" x2="85" y2="55" stroke="#d5c898" stroke-width="2"/><line x1="15" y1="75" x2="85" y2="75" stroke="#d5c898" stroke-width="2"/><line x1="15" y1="95" x2="85" y2="95" stroke="#d5c898" stroke-width="2"/><line x1="20" y1="20" x2="20" y2="100" stroke="#f5c2c1" stroke-width="2"/><rect x="0" y="0" width="100%" height="25" fill="#5a3d1b"/><line x1="0" y1="25" x2="100" y2="25" stroke="#3a2510" stroke-width="2"/></svg></div><div class="icon-text">Notes</div></div>
+                            <div class="icon-wrap" onclick="AppManager.open('reminders')"><div class="icon icon-reminders"><svg viewBox="0 0 100 100"><rect x="0" y="0" width="100%" height="30" fill="#333"/><line x1="35" y1="45" x2="85" y2="45" stroke="#ccc" stroke-width="4"/><line x1="35" y1="65" x2="85" y2="65" stroke="#ccc" stroke-width="4"/><line x1="35" y1="85" x2="85" y2="85" stroke="#ccc" stroke-width="4"/><line x1="25" y1="30" x2="25" y2="100" stroke="#f5c2c1" stroke-width="2"/><path d="M10,40 L15,48 L25,35" fill="none" stroke="#333" stroke-width="4"/><path d="M10,60 L15,68 L25,55" fill="none" stroke="#333" stroke-width="4"/><path d="M10,80 L15,88 L25,75" fill="none" stroke="#ccc" stroke-width="4"/></svg></div><div class="icon-text">Reminders</div></div>
+                            <div class="icon-wrap" onclick="AppManager.open('clock')"><div class="icon icon-clock"><svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#000"/><circle cx="50" cy="50" r="44" fill="#fff"/><circle cx="50" cy="50" r="40" fill="#000"/><line x1="50" y1="50" x2="50" y2="22" stroke="#fff" stroke-width="4" stroke-linecap="round"/><line x1="50" y1="50" x2="70" y2="50" stroke="#fff" stroke-width="4" stroke-linecap="round"/><line x1="50" y1="50" x2="40" y2="65" stroke="#f00" stroke-width="1.5"/><circle cx="50" cy="50" r="4" fill="#f00"/></svg></div><div class="icon-text">Clock</div></div>
+                            <div class="icon-wrap" onclick="CustomAlert.show('Game Center', 'Inicia sesión.')"><div class="icon icon-gamecenter"><svg viewBox="0 0 100 100"><rect x="0" y="0" width="50" height="50" fill="#d2964a"/><rect x="50" y="0" width="50" height="50" fill="#69b52a"/><rect x="0" y="50" width="50" height="50" fill="#2a80b5"/><rect x="50" y="50" width="50" height="50" fill="#d57c2a"/><circle cx="50" cy="50" r="10" fill="#fff" opacity="0.3"/><path d="M15,40 L25,20 L35,40 Z" fill="#fff"/><circle cx="75" cy="25" r="10" fill="#fff"/><circle cx="25" cy="75" r="8" fill="#fff"/><circle cx="75" cy="75" r="12" fill="none" stroke="#fff" stroke-width="4"/><circle cx="75" cy="75" r="4" fill="#fff"/></svg></div><div class="icon-text">Game Center</div></div>
+
+                            <!-- Fila 4 -->
+                            <div class="icon-wrap" onclick="CustomAlert.show('Newsstand', 'Tus revistas aquí')"><div class="icon icon-newsstand"><svg viewBox="0 0 100 100"><rect x="10" y="30" width="80" height="8" fill="#664422"/><rect x="10" y="70" width="80" height="8" fill="#664422"/><rect x="20" y="10" width="25" height="20" fill="#eee"/><path d="M20,10 L30,10 L30,30 L20,30 Z" fill="#4cb0ea"/></svg></div><div class="icon-text">Newsstand</div></div>
+                            <div class="icon-wrap" onclick="CustomAlert.show('iTunes', 'Conectando a iTunes...')"><div class="icon icon-itunes"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#fff" stroke-width="4" opacity="0.3"/><path fill="#fff" d="M35,65 A12,8 0 1,0 45,73 L45,30 L75,25 L75,60 A12,8 0 1,0 85,68 L85,15 L35,22 Z"/></svg></div><div class="icon-text">iTunes</div></div>
+                            <div class="icon-wrap" onclick="CustomAlert.show('App Store', 'Conectando...')"><div class="icon icon-appstore"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" fill="none" stroke="#fff" stroke-width="4" opacity="0.3"/><line x1="50" y1="20" x2="25" y2="75" stroke="#fff" stroke-width="8" stroke-linecap="round"/><line x1="50" y1="20" x2="75" y2="75" stroke="#fff" stroke-width="8" stroke-linecap="round"/><line x1="35" y1="55" x2="65" y2="55" stroke="#fff" stroke-width="8" stroke-linecap="round"/></svg></div><div class="icon-text">App Store</div></div>
+                            <div class="icon-wrap" onclick="AppManager.open('settings')"><div class="icon icon-settings"><svg viewBox="0 0 100 100"><path d="M45,10 L55,10 L58,25 A30,30 0 0,1 68,30 L80,22 L88,30 L80,42 A30,30 0 0,1 85,50 L95,55 L95,65 L85,68 A30,30 0 0,1 80,78 L88,90 L80,98 L68,90 A30,30 0 0,1 58,95 L55,105 L45,105 L42,95 A30,30 0 0,1 32,90 L20,98 L12,90 L20,78 A30,30 0 0,1 15,68 L5,65 L5,55 L15,50 A30,30 0 0,1 20,42 L12,30 L20,22 L32,30 A30,30 0 0,1 42,25 Z" fill="#333"/><circle cx="50" cy="54" r="15" fill="#aaa" stroke="#333" stroke-width="6"/><circle cx="30" cy="30" r="8" fill="#555"/><circle cx="75" cy="70" r="10" fill="#666"/></svg></div><div class="icon-text">Settings</div></div>
+
+                            <!-- Fila 5 (Exclusiva de iPhone 5) -->
+                            <div class="icon-wrap" onclick="AppManager.open('calculator')"><div class="icon icon-calculator"><svg viewBox="0 0 100 100"><rect x="10" y="10" width="35" height="35" fill="#555"/><rect x="55" y="10" width="35" height="35" fill="#555"/><rect x="10" y="55" width="35" height="35" fill="#555"/><rect x="55" y="55" width="35" height="35" fill="#f39c12"/><text x="21" y="38" fill="#fff" font-size="30">+</text><text x="69" y="35" fill="#fff" font-size="30">-</text><text x="25" y="80" fill="#fff" font-size="30">×</text><text x="65" y="83" fill="#fff" font-size="30">=</text></svg></div><div class="icon-text">Calculator</div></div>
+                            <div class="icon-wrap" onclick="CustomAlert.show('Compass', 'Brújula de iOS')"><div class="icon icon-compass"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#111" stroke="#333" stroke-width="2"/><path d="M50,15 L60,50 L50,85 L40,50 Z" fill="#fff"/><path d="M50,15 L60,50 L40,50 Z" fill="#f00"/></svg></div><div class="icon-text">Compass</div></div>
+                            <div class="icon-wrap" onclick="CustomAlert.show('Voice Memos', 'Notas de Voz')"><div class="icon icon-voicememos"><svg viewBox="0 0 100 100"><rect x="35" y="20" width="30" height="45" rx="15" fill="#aaa"/><rect x="35" y="25" width="30" height="10" fill="#333"/><path d="M25,50 A25,25 0 0,0 75,50" fill="none" stroke="#aaa" stroke-width="6"/><line x1="50" y1="75" x2="50" y2="90" stroke="#aaa" stroke-width="6"/><line x1="30" y1="90" x2="70" y2="90" stroke="#aaa" stroke-width="6"/></svg></div><div class="icon-text">Voice Memos</div></div>
+                            <div class="icon-wrap" onclick="AppManager.open('stocks')"><div class="icon icon-stocks"><svg viewBox="0 0 100 100"><line x1="33" y1="0" x2="33" y2="100" stroke="#87c7fa" stroke-width="1"/><line x1="66" y1="0" x2="66" y2="100" stroke="#87c7fa" stroke-width="1"/><path d="M0,80 L20,60 L40,75 L60,30 L80,45 L100,15" fill="none" stroke="#fff" stroke-width="4"/></svg></div><div class="icon-text">Stocks</div></div>
+                        </div>
+                        <div class="page">
+                            <!-- Segunda página -->
+                        </div>
+                    </div>
+                    
+                    <!-- Dock inferior -->
+                    <div id="dock">
+                        <div class="icon-wrap" onclick="AppManager.open('phone')"><div class="icon icon-phone"><svg viewBox="0 0 100 100"><path fill="#fff" d="M25,35 Q25,20 35,20 L45,20 Q50,20 50,25 L55,40 Q55,45 50,45 L42,48 Q42,60 52,60 L55,52 Q60,47 65,47 L80,50 Q85,50 85,55 L85,65 Q85,80 70,80 C40,80 20,60 25,35 Z"/></svg></div><div class="icon-text">Phone</div></div>
+                        <div class="icon-wrap" onclick="AppManager.open('mail')"><div class="icon icon-mail"><svg viewBox="0 0 100 100"><path d="M20,60 Q30,30 60,40 Q80,40 85,60 Z" fill="#fff" opacity="0.5"/><rect x="15" y="30" width="70" height="45" rx="2" fill="#fff"/><path d="M15,30 L50,55 L85,30" stroke="#5fa6ed" stroke-width="2" fill="none"/></svg></div><div class="icon-text">Mail</div></div>
+                        <div class="icon-wrap" onclick="AppManager.open('safari')"><div class="icon icon-safari"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="#fff" stroke="#ccc" stroke-width="3"/><path d="M50,10 L52,15 L48,15 Z M50,90 L52,85 L48,85 Z M10,50 L15,48 L15,52 Z M90,50 L85,48 L85,52 Z" fill="#999"/><path d="M46,46 L65,25 L54,54 L35,75 Z" fill="#f00"/><path d="M54,54 L35,75 L46,46 Z" fill="#ccc"/><circle cx="50" cy="50" r="3" fill="#333"/></svg></div><div class="icon-text">Safari</div></div>
+                        <div class="icon-wrap" onclick="AppManager.open('music')"><div class="icon icon-music"><svg viewBox="0 0 100 100"><path fill="#fff" d="M35,65 A12,8 0 1,0 45,73 L45,30 L75,25 L75,60 A12,8 0 1,0 85,68 L85,15 L35,22 Z"/></svg></div><div class="icon-text">Music</div></div>
+                    </div>
+                </div>
+
+                <!-- Custom iOS Alert Overlay -->
+                <div id="ios-alert-overlay">
+                    <div class="ios-alert-box">
+                        <h3 id="ios-alert-title" style="margin-bottom:10px; font-size:18px;">Notificación</h3>
+                        <p id="ios-alert-msg" style="margin-bottom:20px; font-size:14px;">Mensaje</p>
+                        <button onclick="CustomAlert.hide()" style="width:100%; padding:10px; border-radius:5px; background:linear-gradient(to bottom, #8fa3b8, #4b6a8e); border:1px solid #111; color:#fff; font-weight:bold; font-size:16px; cursor:pointer;">Aceptar</button>
+                    </div>
+                </div>
+
+                <!-- ================= APPS FUNCIONALES ================= -->
+
+                <!-- APP: Settings -->
+                <div id="app-settings" class="app-window" data-status="silver">
+                    <div class="ios-header"><span></span><span>Settings</span><span></span></div>
+                    
+                    <ul class="settings-group" style="margin-top:20px;">
+                        <li>
+                            <div style="display:flex; align-items:center;"><div class="set-icon" style="background:#ff9421;">✈️</div><span>Airplane Mode</span></div>
+                            <div class="ios-toggle" onclick="toggleSwitch(this); SystemSounds.play('click')"><div class="ios-toggle-inner"><div class="ios-toggle-on">I</div><div class="ios-toggle-thumb"></div><div class="ios-toggle-off">O</div></div></div>
+                        </li>
+                        <li><div style="display:flex; align-items:center;"><div class="set-icon" style="background:#4cb0ea;">📶</div><span>Wi-Fi</span></div><span style="color:#777; font-weight:normal;">Movistar ></span></li>
+                        <li><div style="display:flex; align-items:center;"><div class="set-icon" style="background:#4cb0ea;">🅱️</div><span>Bluetooth</span></div><span style="color:#777; font-weight:normal;">Off ></span></li>
+                        <li>
+                            <div style="display:flex; align-items:center;"><div class="set-icon" style="background:#5a3bd1;">🌙</div><span>Do Not Disturb</span></div>
+                            <div class="ios-toggle" onclick="toggleSwitch(this); SystemSounds.play('click')"><div class="ios-toggle-inner"><div class="ios-toggle-on">I</div><div class="ios-toggle-thumb"></div><div class="ios-toggle-off">O</div></div></div>
+                        </li>
+                    </ul>
+
+                    <ul class="settings-group">
+                        <li><div style="display:flex; align-items:center;"><div class="set-icon" style="background:#4cb0ea;">🔆</div><span>Brightness</span></div><input type="range" min="0.3" max="1" step="0.1" value="1" style="width: 120px;" oninput="document.documentElement.style.setProperty('--screen-brightness', this.value)"></li>
+                        <li onclick="SettingsApp.showWallpapers()" style="cursor:pointer;"><div style="display:flex; align-items:center;"><div class="set-icon" style="background:#333;">🖼️</div><span>Wallpaper</span></div><span style="color:#777; font-weight:normal;">></span></li>
+                    </ul>
+                    
+                    <div id="wp-picker-view">
+                        <div class="ios-header"><button class="ios-btn" onclick="SettingsApp.hideWallpapers()">Back</button><span>Wallpapers</span><span></span></div>
+                        <div id="wallpaper-picker">
+                            <div class="wp-thumb" style="background-image:url('https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=640&auto=format&fit=crop');" onclick="SettingsApp.setWP('https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=640&auto=format&fit=crop')"></div>
+                            <div class="wp-thumb" style="background-image:url('https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?q=80&w=640&auto=format&fit=crop');" onclick="SettingsApp.setWP('https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?q=80&w=640&auto=format&fit=crop')"></div>
+                            <div class="wp-thumb" style="background-image:url('https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=640&auto=format&fit=crop');" onclick="SettingsApp.setWP('https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=640&auto=format&fit=crop')"></div>
+                            <div class="wp-thumb" style="background-image:url('https://images.unsplash.com/photo-1518063319789-7217e6706b04?q=80&w=640&auto=format&fit=crop');" onclick="SettingsApp.setWP('https://images.unsplash.com/photo-1518063319789-7217e6706b04?q=80&w=640&auto=format&fit=crop')"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- APP: Phone -->
+                <div id="app-phone" class="app-window" data-status="black">
+                    <div id="phone-display"></div>
+                    <div id="phone-keypad">
+                        <div class="dial-btn" onclick="PhoneApp.add('1'); SystemSounds.play('click')"><span class="dial-num">1</span><span class="dial-letters">&nbsp;</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('2'); SystemSounds.play('click')"><span class="dial-num">2</span><span class="dial-letters">A B C</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('3'); SystemSounds.play('click')"><span class="dial-num">3</span><span class="dial-letters">D E F</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('4'); SystemSounds.play('click')"><span class="dial-num">4</span><span class="dial-letters">G H I</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('5'); SystemSounds.play('click')"><span class="dial-num">5</span><span class="dial-letters">J K L</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('6'); SystemSounds.play('click')"><span class="dial-num">6</span><span class="dial-letters">M N O</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('7'); SystemSounds.play('click')"><span class="dial-num">7</span><span class="dial-letters">P Q R S</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('8'); SystemSounds.play('click')"><span class="dial-num">8</span><span class="dial-letters">T U V</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('9'); SystemSounds.play('click')"><span class="dial-num">9</span><span class="dial-letters">W X Y Z</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('*'); SystemSounds.play('click')"><span class="dial-num">*</span><span class="dial-letters">&nbsp;</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('0'); SystemSounds.play('click')"><span class="dial-num">0</span><span class="dial-letters">+</span></div>
+                        <div class="dial-btn" onclick="PhoneApp.add('#'); SystemSounds.play('click')"><span class="dial-num">#</span><span class="dial-letters">&nbsp;</span></div>
+                        
+                        <div class="dial-btn" onclick="PhoneApp.add('+'); SystemSounds.play('click')" style="background:linear-gradient(to bottom, #eee, #ddd);"><span class="dial-num" style="font-size:24px;">+</span></div>
+                        <div class="dial-btn call-btn" onclick="PhoneApp.call(); SystemSounds.play('click')"><svg width="40" height="40" viewBox="0 0 100 100"><path fill="#fff" d="M25,35 Q25,20 35,20 L45,20 Q50,20 50,25 L55,40 Q55,45 50,45 L42,48 Q42,60 52,60 L55,52 Q60,47 65,47 L80,50 Q85,50 85,55 L85,65 Q85,80 70,80 C40,80 20,60 25,35 Z"/></svg></div>
+                        <div class="dial-btn" onclick="PhoneApp.del(); SystemSounds.play('click')" style="background:linear-gradient(to bottom, #eee, #ddd);"><svg width="35" height="25" viewBox="0 0 100 100"><path fill="#666" d="M30,20 L90,20 L90,80 L30,80 L10,50 Z"/><text x="45" y="62" font-size="36" fill="#fff" font-weight="bold">×</text></svg></div>
+                    </div>
+                    <div class="bottom-nav">
+                        <div class="bottom-nav-item"><svg width="24" height="24" viewBox="0 0 100 100"><polygon fill="#aaa" points="50,10 60,40 90,40 65,60 75,90 50,70 25,90 35,60 10,40 40,40"/></svg>Favorites</div>
+                        <div class="bottom-nav-item"><svg width="24" height="24" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#aaa" stroke-width="8"/><line x1="50" y1="50" x2="50" y2="25" stroke="#aaa" stroke-width="8"/><line x1="50" y1="50" x2="65" y2="65" stroke="#aaa" stroke-width="8"/></svg>Recents</div>
+                        <div class="bottom-nav-item"><svg width="24" height="24" viewBox="0 0 100 100"><circle cx="50" cy="35" r="20" fill="#aaa"/><path d="M20,90 Q20,60 50,60 Q80,60 80,90 Z" fill="#aaa"/></svg>Contacts</div>
+                        <div class="bottom-nav-item active"><svg width="24" height="24" viewBox="0 0 100 100"><rect x="15" y="20" width="70" height="60" rx="5" fill="none" stroke="#fff" stroke-width="6"/><circle cx="30" cy="35" r="4" fill="#fff"/><circle cx="50" cy="35" r="4" fill="#fff"/><circle cx="70" cy="35" r="4" fill="#fff"/><circle cx="30" cy="50" r="4" fill="#fff"/><circle cx="50" cy="50" r="4" fill="#fff"/><circle cx="70" cy="50" r="4" fill="#fff"/><circle cx="30" cy="65" r="4" fill="#fff"/><circle cx="50" cy="65" r="4" fill="#fff"/><circle cx="70" cy="65" r="4" fill="#fff"/></svg>Keypad</div>
+                    </div>
+                </div>
+
+                <!-- APP: Cámara -->
+                <div id="app-camera" class="app-window" data-status="black">
+                    <div id="camera-top-bar">
+                        <span style="color:#fff; font-size:12px; font-weight:bold;">Off</span>
+                        <span style="color:#fff; font-size:12px; font-weight:bold;">Options</span>
+                        <div style="color:#fff; font-size:24px; cursor:pointer;" onclick="CameraApp.toggleCamera(); SystemSounds.play('click')">🔄</div>
+                    </div>
+                    <video id="camera-view" autoplay playsinline></video>
+                    <div class="camera-iris" id="camera-iris"></div>
+                    <div id="camera-controls">
+                        <div style="width:45px; height:45px; background:#222; border:1px solid #555; cursor:pointer; background-size:cover; background-position:center;" id="camera-thumb" onclick="AppManager.open('photos')"></div>
+                        <div id="shutter-btn-wrap">
+                            <div id="shutter-btn" onclick="CameraApp.handleShutter(); SystemSounds.play('click')"></div>
+                        </div>
+                        <div class="cam-switch-container" id="cam-switch" onclick="CameraApp.toggleMode(); SystemSounds.play('click')">
+                            <div class="cam-switch-thumb">📷</div>
+                        </div>
+                    </div>
+                    <canvas id="camera-canvas"></canvas>
+                </div>
+
+                <!-- APP: Photos -->
+                <div id="app-photos" class="app-window" data-status="silver">
+                    <div class="ios-header"><button class="ios-btn" onclick="AppManager.goHome()">Albums</button><span>Camera Roll</span><button class="ios-btn">Edit</button></div>
+                    <div id="photos-grid"></div>
+                    <div id="photo-viewer">
+                        <div class="ios-header" style="background: rgba(0,0,0,0.7); border:none;"><button class="ios-btn" onclick="PhotosApp.closeMedia()">Roll</button><span id="photo-index-txt" style="color:#fff;">1 of 1</span><button class="ios-btn" onclick="PhotosApp.deleteMedia()">Del</button></div>
+                        <img id="photo-full" src="" alt="Full Photo">
+                        <video id="video-full" controls playsinline></video>
+                    </div>
+                </div>
+
+                <!-- APP: Maps -->
+                <div id="app-maps" class="app-window" data-status="silver">
+                    <div class="ios-header" style="background:linear-gradient(to bottom, #777, #444); border-color:#222;">
+                        <input type="text" placeholder="Search or Address" style="width:70%; border-radius:15px; padding:4px 10px; border:1px solid #222; outline:none;">
+                        <button class="ios-btn" style="background:#444; border-color:#222;">Directions</button>
+                    </div>
+                    <iframe id="maps-frame" src="about:blank"></iframe>
+                    <div class="bottom-nav" style="height:40px; background:linear-gradient(to bottom, #8ca1ba, #6985a5); justify-content:space-between; padding:0 10px;">
+                        <span style="color:#fff; font-size:24px;">📍</span><span style="color:#fff; font-size:20px;">📄</span>
+                    </div>
+                </div>
+
+                <!-- APP: Weather -->
+                <div id="app-weather" class="app-window" data-status="silver">
+                    <div class="weather-top">
+                        <h1 id="w-city" style="font-size:24px;">Santo Domingo</h1>
+                        <h2 id="w-temp" style="font-size:70px; font-weight:200; margin:10px 0;">--°</h2>
+                        <p id="w-desc" style="font-size:16px;">Cargando...</p>
+                    </div>
+                    <div class="weather-list" id="w-list"></div>
+                    <div style="height:40px; background:rgba(0,0,0,0.3); display:flex; justify-content:space-between; align-items:center; padding:0 10px; font-weight:bold;">
+                        <span style="cursor:pointer;" onclick="WeatherApp.fetchWeather('Madrid'); SystemSounds.play('click')">🌍</span>
+                        <span>°C / °F</span>
+                    </div>
+                </div>
+
+                <!-- APP: Reminders -->
+                <div id="app-reminders" class="app-window" data-status="silver">
+                    <div class="ios-header" style="background:linear-gradient(to bottom, #5a3d1b, #3a2510); border-color:#222;"><button class="ios-btn" style="background:#4a3010; border-color:#222;">Edit</button><span>Reminders</span><button class="ios-btn" style="background:#4a3010; border-color:#222;" onclick="RemindersApp.add(); SystemSounds.play('click')">+</button></div>
+                    <div class="reminders-paper">
+                        <div style="background:linear-gradient(to bottom, #a03c3c, #7a2a2a); color:#fff; padding:10px; font-weight:bold; font-family:'Helvetica Neue', sans-serif;">Completed List</div>
+                        <ul class="reminders-list" id="rem-list">
+                            <li><div class="rem-check done"></div> Instalar iOS 6</li>
+                            <li><div class="rem-check" onclick="this.classList.toggle('done'); SystemSounds.play('click')"></div> Probar Siri</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- APP: Stocks -->
+                <div id="app-stocks" class="app-window" data-status="black">
+                    <div style="flex-grow:1; overflow-y:auto;">
+                        <div class="stock-item"><span class="stock-name">AAPL</span><div class="stock-price">560.24 <span class="stock-badge">+1.2%</span></div></div>
+                        <div class="stock-item"><span class="stock-name">GOOG</span><div class="stock-price">390.15 <span class="stock-badge red">-0.5%</span></div></div>
+                        <div class="stock-item"><span class="stock-name">MSFT</span><div class="stock-price">42.40 <span class="stock-badge">+0.1%</span></div></div>
+                    </div>
+                    <div id="stock-graph">
+                        <div style="padding:10px; color:#aaa; font-size:12px;">AAPL (Apple Inc.) - 1D</div>
+                        <svg width="100%" height="100" style="position:absolute; bottom:0;"><polyline points="0,80 50,40 100,60 150,20 200,50 250,10 320,30" fill="none" stroke="#4cb0ea" stroke-width="2"/><polygon points="0,100 0,80 50,40 100,60 150,20 200,50 250,10 320,30 320,100" fill="rgba(76,176,234,0.3)"/></svg>
+                    </div>
+                </div>
+
+                <!-- APP: Music -->
+                <div id="app-music" class="app-window" data-status="silver">
+                    <div class="ios-header"><span>Playlists</span><span>Music</span><span>Now Playing</span></div>
+                    <div id="music-search-bar"><input type="text" id="music-search-input" placeholder="Search iTunes..." onkeypress="if(event.key==='Enter'){ MusicApp.search(); SystemSounds.play('click'); }"></div>
+                    <div id="music-list"><div style="padding:20px; text-align:center; color:#888;">Busca un artista (API iTunes)</div></div>
+                    <div id="music-player">
+                        <img id="music-player-cover" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Cover">
+                        <div class="player-info"><div id="music-player-title">No hay música</div><div id="music-player-artist"></div></div>
+                        <button id="music-btn-play" onclick="MusicApp.pause(); SystemSounds.play('click')">▶</button>
+                    </div>
+                    <audio id="html-audio-player" style="display:none;"></audio>
+                </div>
+
+                <!-- APP: Clock -->
+                <div id="app-clock" class="app-window" data-status="black">
+                    <div class="ios-header" style="background:linear-gradient(to bottom, #444, #111); border-color:#000;">
+                        <button class="ios-btn" style="background:#333; border-color:#000;">Edit</button><span>Alarms</span><button class="ios-btn" style="background:#333; border-color:#000;" onclick="ClockApp.promptAlarm()">+</button>
+                    </div>
+                    <div id="clock-list"></div>
+                </div>
+
+                <!-- APP: Messages -->
+                <div id="app-messages" class="app-window" data-status="silver">
+                    <div class="ios-header"><button class="ios-btn">Edit</button><span>Messages</span><button class="ios-btn">📝</button></div>
+                    <div id="msg-chat"><div class="msg-bubble received">¡Hola! Escríbeme algo.</div></div>
+                    <div id="msg-input-area">
+                        <input type="text" id="msg-input" placeholder="Text Message" onkeypress="if(event.key==='Enter') MessagesApp.send()">
+                        <button id="msg-send" onclick="MessagesApp.send(); SystemSounds.play('click')">Send</button>
+                    </div>
+                </div>
+
+                <!-- APP: Calculator -->
+                <div id="app-calculator" class="app-window" data-status="black">
+                    <div id="calc-display">0</div>
+                    <div id="calc-keys">
+                        <button class="calc-btn grey" onclick="calc('C'); SystemSounds.play('click')">C</button><button class="calc-btn grey" onclick="calc('+-'); SystemSounds.play('click')">±</button><button class="calc-btn grey" onclick="calc('%'); SystemSounds.play('click')">%</button><button class="calc-btn orange" onclick="calc('/'); SystemSounds.play('click')">÷</button>
+                        <button class="calc-btn dark" onclick="calc('7'); SystemSounds.play('click')">7</button><button class="calc-btn dark" onclick="calc('8'); SystemSounds.play('click')">8</button><button class="calc-btn dark" onclick="calc('9'); SystemSounds.play('click')">9</button><button class="calc-btn orange" onclick="calc('*'); SystemSounds.play('click')">×</button>
+                        <button class="calc-btn dark" onclick="calc('4'); SystemSounds.play('click')">4</button><button class="calc-btn dark" onclick="calc('5'); SystemSounds.play('click')">5</button><button class="calc-btn dark" onclick="calc('6'); SystemSounds.play('click')">6</button><button class="calc-btn orange" onclick="calc('-'); SystemSounds.play('click')">-</button>
+                        <button class="calc-btn dark" onclick="calc('1'); SystemSounds.play('click')">1</button><button class="calc-btn dark" onclick="calc('2'); SystemSounds.play('click')">2</button><button class="calc-btn dark" onclick="calc('3'); SystemSounds.play('click')">3</button><button class="calc-btn orange" onclick="calc('+'); SystemSounds.play('click')">+</button>
+                        <button class="calc-btn dark zero" onclick="calc('0'); SystemSounds.play('click')">0</button><button class="calc-btn dark" onclick="calc('.'); SystemSounds.play('click')">,</button><button class="calc-btn orange" onclick="calc('='); SystemSounds.play('click')">=</button>
+                    </div>
+                </div>
+
+                <!-- APP: Notes -->
+                <div id="app-notes" class="app-window" data-status="black">
+                    <div class="ios-header notes-header"><span>Accounts</span><span>Notes</span><button class="ios-btn" onclick="NotesApp.newNote(); SystemSounds.play('click')">+</button></div>
+                    <div id="notes-list"></div>
+                    <div id="note-editor">
+                        <div class="ios-header notes-header"><button class="ios-btn" onclick="NotesApp.closeEditor(); SystemSounds.play('click')">Notes</button><span>Edit</span><button class="ios-btn" onclick="NotesApp.deleteNote(); SystemSounds.play('click')">Del</button></div>
+                        <textarea id="note-textarea" oninput="NotesApp.saveCurrent()"></textarea>
+                    </div>
+                </div>
+
+                <!-- APP: Safari -->
+                <div id="app-safari" class="app-window" data-status="silver">
+                    <div class="safari-bar"><input type="text" id="safari-url" value="https://es.wikipedia.org" onkeypress="if(event.key==='Enter'){ SafariApp.load(); SystemSounds.play('click'); }"></div>
+                    <iframe id="safari-frame" src="about:blank"></iframe>
+                    <div class="safari-bar" style="height: 40px; justify-content: space-around; background: linear-gradient(to bottom, #8ca1ba, #6985a5);">
+                        <span style="color:#fff; font-size:20px; cursor:pointer;" onclick="SafariApp.back(); SystemSounds.play('click')">◀</span>
+                        <span style="color:#fff; font-size:20px; cursor:pointer;" onclick="SafariApp.forward(); SystemSounds.play('click')">▶</span>
+                        <span style="color:#fff; font-size:20px;">+</span><span style="color:#fff; font-size:20px;">📖</span><span style="color:#fff; font-size:20px;">🗂️</span>
+                    </div>
+                </div>
+
+                <!-- APP: Calendar -->
+                <div id="app-calendar" class="app-window" data-status="silver">
+                    <div class="ios-header"><button class="ios-btn">Calendars</button><span id="cal-month-title">Enero</span><button class="ios-btn" onclick="CustomAlert.show('Aviso', 'Funcionalidad en desarrollo.'); SystemSounds.play('click')">+</button></div>
+                    <div id="cal-grid"></div>
+                    <div id="cal-events"><p style="color:#555; font-weight:bold; font-size:14px;">Eventos de hoy:</p><p style="color:#888; font-size:12px; margin-top:5px;">No hay eventos programados.</p></div>
+                </div>
+
+                <!-- Siri Overlay (Tocar para hablar + Teclado) -->
+                <div id="siri-overlay">
+                    <div id="siri-texture"></div>
+                    <div id="siri-content"></div>
+                    <div id="siri-input-container">
+                        <input type="text" id="siri-text-input" placeholder="Escribe a Siri..." onkeypress="if(event.key==='Enter'){ Siri.sendText(); SystemSounds.play('click'); }">
+                    </div>
+                    <div id="siri-mic-area">
+                        <div id="siri-mic" onclick="Siri.toggleListening(); SystemSounds.play('click')"></div>
+                    </div>
+                </div>
+
+                <!-- Multitarea -->
+                <div id="multitasking"></div>
+
+                <!-- Pantalla de Encendido -->
+                <div id="boot-screen"><div id="apple-logo"></div></div>
+
+            </div> <!-- /screen-glass -->
+            
+            <!-- EL BOTÓN HOME RECUPERADO -->
+            <div id="home-button"></div>
+            
+        </div> <!-- /iphone-hardware -->
+    </div> <!-- /iphone-wrapper -->
+
+    <script>
+        const $ = id => document.getElementById(id);
+
+        // --- SISTEMA DE SONIDOS CLÁSICOS (CORREGIDO: CLIC ACÚSTICO, NO ELÉCTRICO) ---
+        const SystemSounds = {
+            ctx: null,
+            init: function() { if(!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)(); },
+            play: function(type) {
+                try {
+                    this.init();
+                    if(this.ctx.state === 'suspended') this.ctx.resume();
+                    
+                    if (type === 'unlock') {
+                        // Sonido de desbloqueo
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.connect(gain); gain.connect(this.ctx.destination);
+                        osc.type = 'sine'; osc.frequency.setValueAtTime(400, this.ctx.currentTime);
+                        osc.frequency.exponentialRampToValueAtTime(800, this.ctx.currentTime + 0.08);
+                        gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.08);
+                        osc.start(this.ctx.currentTime); osc.stop(this.ctx.currentTime + 0.08);
+                    } else {
+                        // Clic mecánico realista usando ruido blanco filtrado
+                        const bufferSize = this.ctx.sampleRate * 0.02; 
+                        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                        const data = buffer.getChannelData(0);
+                        for (let i = 0; i < bufferSize; i++) { data[i] = Math.random() * 2 - 1; }
+                        
+                        const noise = this.ctx.createBufferSource(); 
+                        noise.buffer = buffer;
+                        
+                        const bandpass = this.ctx.createBiquadFilter();
+                        bandpass.type = 'bandpass'; 
+                        bandpass.frequency.value = type === 'lock' ? 800 : 1200; // Bloqueo grave, tecla aguda
+                        
+                        const gain = this.ctx.createGain();
+                        gain.gain.setValueAtTime(type === 'lock' ? 0.8 : 0.2, this.ctx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.02);
+                        
+                        noise.connect(bandpass); bandpass.connect(gain); gain.connect(this.ctx.destination);
+                        noise.start(this.ctx.currentTime);
+                    }
+                } catch(e) {}
+            }
+        };
+
+        // --- RESPONSIVIDAD ---
+        function resizePhone() {
+            const phone = $('iphone-hardware');
+            if(!phone) return;
+            const maxWidth = window.innerWidth * 0.95;
+            const maxHeight = window.innerHeight * 0.95;
+            const scaleX = maxWidth / 340;
+            const scaleY = maxHeight / 740;
+            const scale = Math.min(scaleX, scaleY, 1); 
+            phone.style.transform = `scale(${scale})`;
+        }
+        window.addEventListener('resize', resizePhone);
+
+        // --- ALMACENAMIENTO AVANZADO (IndexedDB) ---
+        const DB = {
+            dbName: 'iOS6_Storage', dbVersion: 1, db: null,
+            init: function() {
+                return new Promise((resolve, reject) => {
+                    const req = indexedDB.open(this.dbName, this.dbVersion);
+                    req.onupgradeneeded = (e) => {
+                        let db = e.target.result;
+                        if(!db.objectStoreNames.contains('media')) db.createObjectStore('media', {keyPath: 'id', autoIncrement: true});
+                        if(!db.objectStoreNames.contains('data')) db.createObjectStore('data', {keyPath: 'key'});
+                    };
+                    req.onsuccess = (e) => { this.db = e.target.result; resolve(); };
+                    req.onerror = (e) => reject(e);
+                });
+            },
+            saveMedia: function(mediaObj) {
+                return new Promise((resolve) => { const tx = this.db.transaction('media', 'readwrite'); tx.objectStore('media').add(mediaObj); tx.oncomplete = () => resolve(); });
+            },
+            loadMedia: function() {
+                return new Promise((resolve) => { const tx = this.db.transaction('media', 'readonly'); const req = tx.objectStore('media').getAll(); req.onsuccess = () => resolve(req.result); });
+            },
+            deleteMedia: function(id) {
+                return new Promise((resolve) => { const tx = this.db.transaction('media', 'readwrite'); tx.objectStore('media').delete(id); tx.oncomplete = () => resolve(); });
+            },
+            saveData: function(key, val) { const tx = this.db.transaction('data', 'readwrite'); tx.objectStore('data').put({key: key, value: val}); },
+            loadData: function(key) { return new Promise((resolve) => { const tx = this.db.transaction('data', 'readonly'); const req = tx.objectStore('data').get(key); req.onsuccess = () => resolve(req.result ? req.result.value : null); }); }
+        };
+
+        const CustomAlert = {
+            show: function(title, msg) { $('ios-alert-title').innerText = title; $('ios-alert-msg').innerText = msg; $('ios-alert-overlay').style.display = 'flex'; },
+            hide: function() { $('ios-alert-overlay').style.display = 'none'; SystemSounds.play('click'); }
+        };
+
+        let isUnlocked = false; let activeApp = null; let openApps = ['phone', 'safari', 'messages', 'music'];
+
+        // --- RELOJ Y ALARMAS ---
+        function updateTime() {
+            const now = new Date();
+            let h = now.getHours(); let m = now.getMinutes(); let ampm = h >= 12 ? 'PM' : 'AM';
+            let currentHHMM = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+            ClockApp.checkAlarms(currentHHMM);
+            h = h % 12; h = h ? h : 12; m = m < 10 ? '0' + m : m;
+            if($('status-time')) $('status-time').innerText = `${h}:${m} ${ampm}`;
+            if($('ls-time')) {
+                $('ls-time').innerText = `${h}:${m}`;
+                const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+                $('ls-date').innerText = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+                const calDay = document.querySelector('.icon-calendar-day'); const calTop = document.querySelector('.icon-calendar-top');
+                if(calDay) calDay.innerText = now.getDate();
+                if(calTop) calTop.innerText = days[now.getDay()].substring(0,3).toUpperCase();
+            }
+        }
+        setInterval(updateTime, 1000);
+
+        // --- DESBLOQUEO SLIDER ---
+        const sliderThumb = $('slider-thumb'); const sliderContainer = $('slider-container');
+        let isDragging = false; let startX = 0; let maxDrag = 0; 
+        function startDrag(e) { isDragging = true; startX = (e.touches ? e.touches[0].clientX : e.clientX) - sliderThumb.offsetLeft; }
+        function drag(e) {
+            if (!isDragging) return; let x = (e.touches ? e.touches[0].clientX : e.clientX) - startX;
+            if (x < 2) x = 2; if (x > maxDrag) { x = maxDrag; unlockPhone(); }
+            sliderThumb.style.transform = `translateX(${x}px)`; $('slider-text').style.opacity = 1 - (x / maxDrag);
+        }
+        function endDrag() {
+            if (!isDragging) return; isDragging = false;
+            if(sliderThumb.style.transform !== `translateX(${maxDrag}px)`) {
+                sliderThumb.style.transition = 'transform 0.3s ease'; sliderThumb.style.transform = `translateX(2px)`; $('slider-text').style.opacity = 1; setTimeout(() => sliderThumb.style.transition = '', 300);
+            }
+        }
+        if (sliderThumb) {
+            sliderThumb.addEventListener('mousedown', startDrag); document.addEventListener('mousemove', drag); document.addEventListener('mouseup', endDrag);
+            sliderThumb.addEventListener('touchstart', startDrag, {passive: false}); document.addEventListener('touchmove', drag, {passive: false}); document.addEventListener('touchend', endDrag);
+        }
+
+        function unlockPhone() {
+            if(!isUnlocked) SystemSounds.play('unlock');
+            isUnlocked = true; $('lock-screen').classList.remove('active'); $('home-screen').classList.add('active'); $('status-bar').className = 'trans';
+        }
+
+        // --- APP MANAGER ---
+        const AppManager = {
+            open: function(appName) {
+                if(!isUnlocked && appName !== 'camera') return; 
+                if(!isUnlocked && appName === 'camera') unlockPhone(); 
+                SystemSounds.play('click');
+                const appEl = $(`app-${appName}`); if(!appEl) return;
+                
+                appEl.classList.add('open'); activeApp = appName;
+                $('status-bar').className = appEl.getAttribute('data-status') || '';
+                if(!openApps.includes(appName)) openApps.unshift(appName);
+                
+                if(appName === 'safari' && $('safari-frame').src === "about:blank") SafariApp.load();
+                if(appName === 'notes') NotesApp.render();
+                if(appName === 'photos') PhotosApp.render();
+                if(appName === 'camera') CameraApp.init();
+                if(appName === 'clock') ClockApp.render();
+                if(appName === 'calendar') CalendarApp.render();
+                if(appName === 'maps') MapsApp.load();
+                if(appName === 'weather') WeatherApp.fetchWeather('Madrid');
+                
+                $('multitasking').classList.remove('open');
+            },
+            goHome: function() {
+                if(!isUnlocked) return;
+                document.querySelectorAll('.app-window').forEach(el => el.classList.remove('open'));
+                $('status-bar').className = 'trans'; activeApp = null; $('multitasking').classList.remove('open');
+                if(CameraApp.stream) { CameraApp.stream.getTracks().forEach(t => t.stop()); CameraApp.stream = null; }
+                if(CameraApp.mediaRecorder && CameraApp.mediaRecorder.state === 'recording') CameraApp.handleShutter();
+                SystemSounds.play('click');
+            },
+            toggleMultitasking: function() {
+                if(!isUnlocked) return;
+                const mt = $('multitasking');
+                if(mt.classList.contains('open')) { mt.classList.remove('open'); } else {
+                    mt.innerHTML = '';
+                    openApps.forEach(app => {
+                        const originalIcon = document.querySelector(`.icon-${app}`); if(!originalIcon) return;
+                        mt.innerHTML += `<div class="mt-icon-wrap" onmousedown="AppManager.mtLongPress(this)" onmouseup="AppManager.mtRelease()" onclick="if(!this.classList.contains('edit-mode')) AppManager.open('${app}')"><div class="mt-badge" onclick="event.stopPropagation(); AppManager.killApp('${app}', this.parentElement)">-</div><div class="icon icon-${app}" style="background:${originalIcon.style.background}">${originalIcon.innerHTML}</div></div>`;
+                    });
+                    mt.classList.add('open');
+                }
+            },
+            mtTimer: null,
+            mtLongPress: function(el) { this.mtTimer = setTimeout(() => { document.querySelectorAll('.mt-icon-wrap').forEach(w => w.classList.add('edit-mode')); }, 800); },
+            mtRelease: function() { clearTimeout(this.mtTimer); },
+            killApp: function(app, el) { openApps = openApps.filter(a => a !== app); el.remove(); if(openApps.length === 0) this.toggleMultitasking(); }
+        };
+
+        // --- BOTÓN HOME (CORREGIDO) ---
+        let homeClicks = 0; let homeTimer; let siriTimer;
+        const homeBtn = $('home-button');
+        if(homeBtn) {
+            homeBtn.addEventListener('mousedown', () => {
+                siriTimer = setTimeout(() => { Siri.open(); homeClicks = 0; }, 800);
+                homeBtn.style.boxShadow = "inset 0 4px 8px rgba(0,0,0,0.9)";
+            });
+            homeBtn.addEventListener('mouseup', () => {
+                clearTimeout(siriTimer); homeBtn.style.boxShadow = "";
+                
+                // CORRECCIÓN: Un clic cierra Siri instantáneamente
+                if(Siri.isOpen) { Siri.close(); return; } 
+                
+                homeClicks++;
+                if(homeClicks === 1) { homeTimer = setTimeout(() => { AppManager.goHome(); homeClicks = 0; }, 250); } 
+                else if (homeClicks === 2) { clearTimeout(homeTimer); AppManager.toggleMultitasking(); homeClicks = 0; }
+            });
+            homeBtn.addEventListener('touchstart', (e) => { e.preventDefault(); homeBtn.dispatchEvent(new Event('mousedown')); });
+            homeBtn.addEventListener('touchend', (e) => { e.preventDefault(); homeBtn.dispatchEvent(new Event('mouseup')); });
+        }
+
+        function toggleSwitch(el) { el.classList.toggle('on'); }
+
+        // --- APPS LOGIC ---
+        const SettingsApp = {
+            showWallpapers: function() { $('wp-picker-view').style.display = 'flex'; },
+            hideWallpapers: function() { $('wp-picker-view').style.display = 'none'; },
+            setWP: function(url) { document.documentElement.style.setProperty('--wallpaper', `url('${url}')`); localStorage.setItem('ios5_wallpaper', url); CustomAlert.show("Wallpaper", "Fondo actualizado."); }
+        };
+
+        const CalendarApp = {
+            render: function() {
+                const grid = $('cal-grid'); const now = new Date();
+                const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay(); const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+                const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+                $('cal-month-title').innerText = months[now.getMonth()];
+                const headers = `<div class="cal-day-header">SUN</div><div class="cal-day-header">MON</div><div class="cal-day-header">TUE</div><div class="cal-day-header">WED</div><div class="cal-day-header">THU</div><div class="cal-day-header">FRI</div><div class="cal-day-header">SAT</div>`;
+                grid.innerHTML = headers;
+                for(let i=0; i<firstDay; i++) { grid.innerHTML += `<div class="cal-day empty"></div>`; }
+                for(let i=1; i<=daysInMonth; i++) { let isToday = (i === now.getDate()) ? 'today' : ''; grid.innerHTML += `<div class="cal-day ${isToday}" onclick="CustomAlert.show('Eventos', 'Sin eventos para el ${i} de ${months[now.getMonth()]}.'); SystemSounds.play('click')">${i}</div>`; }
+            }
+        };
+
+        const MapsApp = { load: function() { const frame = $('maps-frame'); if(frame.src === "about:blank") frame.src = "https://www.openstreetmap.org/export/embed.html?bbox=-3.7%2C40.4%2C-3.6%2C40.5&layer=mapnik"; } };
+
+        const WeatherApp = {
+            fetchWeather: async function(city) {
+                $('w-desc').innerText = 'Cargando...';
+                try {
+                    const geo = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=es&format=json`).then(r=>r.json());
+                    if(!geo.results) throw new Error();
+                    const data = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${geo.results[0].latitude}&longitude=${geo.results[0].longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min&timezone=auto`).then(r=>r.json());
+                    
+                    $('w-city').innerText = geo.results[0].name; $('w-temp').innerText = Math.round(data.current_weather.temperature) + '°'; $('w-desc').innerText = 'Viento: ' + data.current_weather.windspeed + 'km/h';
+                    const list = $('w-list'); list.innerHTML = ''; const days = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+                    for(let i=1; i<5; i++) { let d = new Date(data.daily.time[i]); list.innerHTML += `<div class="w-item"><span>${days[d.getDay()]}</span><span style="color:#ffde00;">☀️ ${Math.round(data.daily.temperature_2m_max[i])}°</span></div>`; }
+                } catch(e) { $('w-desc').innerText = 'Error al conectar.'; }
+            }
+        };
+
+        const RemindersApp = { add: function() { const text = prompt("Nueva tarea:"); if(text) { $('rem-list').innerHTML += `<li><div class="rem-check" onclick="this.classList.toggle('done'); SystemSounds.play('click')"></div> ${text}</li>`; } } };
+
+        const MusicApp = {
+            audio: null,
+            init: function() { if(!this.audio) { this.audio = $('html-audio-player'); this.audio.addEventListener('ended', () => { $('music-btn-play').innerText = '▶'; }); this.audio.addEventListener('play', () => { $('music-btn-play').innerText = '⏸'; }); this.audio.addEventListener('pause', () => { $('music-btn-play').innerText = '▶'; }); } },
+            search: async function() {
+                const query = $('music-search-input').value; if(!query) return; $('music-list').innerHTML = '<div style="padding:20px; text-align:center; color:#888;">Buscando...</div>';
+                try {
+                    const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(query)}&media=music&limit=25`); const data = await res.json(); $('music-list').innerHTML = '';
+                    if(data.results.length === 0) { $('music-list').innerHTML = '<div style="padding:20px; text-align:center; color:#888;">No results found.</div>'; return; }
+                    data.results.forEach(track => {
+                        if(!track.previewUrl) return;
+                        const safeTitle = track.trackName.replace(/'/g, "\\'").replace(/"/g, '&quot;'); const safeArtist = track.artistName.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                        $('music-list').innerHTML += `<div class="music-item" onclick="MusicApp.play('${track.previewUrl}', '${safeTitle}', '${safeArtist}', '${track.artworkUrl60}')"><img src="${track.artworkUrl60}"><div class="music-info"><div class="music-title">${track.trackName}</div><div class="music-artist">${track.artistName}</div></div></div>`;
+                    });
+                } catch(e) { $('music-list').innerHTML = '<div style="padding:20px; text-align:center; color:red;">Error de conexión.</div>'; }
+            },
+            play: function(url, title, artist, cover) { if(!this.audio) this.init(); this.audio.src = url; this.audio.play(); $('music-player-title').innerText = title; $('music-player-artist').innerText = artist; $('music-player-cover').src = cover; },
+            pause: function() { if(!this.audio) return; if(this.audio.paused && this.audio.src) this.audio.play(); else this.audio.pause(); }
+        };
+
+        const ClockApp = {
+            lastCheckedMinute: null, alarms: [],
+            render: async function() { const list = $('clock-list'); this.alarms = (await DB.loadData('alarms')) || []; list.innerHTML = ''; this.alarms.forEach((a, i) => { list.innerHTML += `<div class="alarm-item"><div><div class="alarm-time">${a.time}</div><div class="alarm-label">Alarm</div></div><div class="ios-toggle ${a.active ? 'on' : ''}" onclick="ClockApp.toggleAlarm(${i}, this); SystemSounds.play('click')"><div class="ios-toggle-inner"><div class="ios-toggle-on">I</div><div class="ios-toggle-thumb"></div><div class="ios-toggle-off">O</div></div></div></div>`; }); },
+            promptAlarm: async function() { const t = prompt("Hora (HH:MM):", "08:00"); if(t && /^\d{2}:\d{2}$/.test(t)) { this.alarms.push({time: t, active: true}); DB.saveData('alarms', this.alarms); this.render(); } else if(t) CustomAlert.show("Error", "Formato inválido."); },
+            toggleAlarm: function(index, el) { el.classList.toggle('on'); this.alarms[index].active = el.classList.contains('on'); DB.saveData('alarms', this.alarms); },
+            checkAlarms: function(currentHHMM) {
+                if(this.lastCheckedMinute === currentHHMM) return; this.lastCheckedMinute = currentHHMM; let triggered = false;
+                this.alarms.forEach(a => { if(a.active && a.time === currentHHMM) { CustomAlert.show("Alarma", `¡Son las ${a.time}!`); a.active = false; triggered = true; SystemSounds.play('unlock');} });
+                if(triggered) { DB.saveData('alarms', this.alarms); if(activeApp === 'clock') this.render(); }
+            }
+        };
+
+        const MessagesApp = { send: function() { const text = $('msg-input').value; if(!text) return; const chat = $('msg-chat'); chat.innerHTML += `<div class="msg-bubble sent">${text}</div>`; $('msg-input').value = ''; chat.scrollTop = chat.scrollHeight; setTimeout(() => { const replies = ["¡Entendido!", "iOS 6 es lo máximo.", "Claro que sí.", "Espero que esto cumpla tus expectativas."]; chat.innerHTML += `<div class="msg-bubble received">${replies[Math.floor(Math.random()*replies.length)]}</div>`; chat.scrollTop = chat.scrollHeight; SystemSounds.play('unlock');}, 1500); } };
+
+        let calcVal = '0';
+        function calc(key) { const d = $('calc-display'); if(key === 'C') calcVal = '0'; else if(key === '=') { try { calcVal = eval(calcVal.replace(/×/g, '*').replace(/÷/g, '/').replace(/,/g, '.')) + ''; } catch(e) { calcVal = 'Error'; } } else { if(calcVal === '0' && key !== '.') calcVal = key; else calcVal += key; } if(calcVal.length > 9) calcVal = calcVal.substring(0, 9); d.innerText = calcVal; }
+
+        const NotesApp = {
+            currentId: null, notes: [],
+            render: async function() { const list = $('notes-list'); this.notes = (await DB.loadData('notes')) || []; list.innerHTML = ''; this.notes.forEach((n, i) => { list.innerHTML += `<div class="note-item" onclick="NotesApp.openNote(${i}); SystemSounds.play('click')">${n.substring(0, 30) || 'New Note...'}</div>`; }); },
+            newNote: function() { this.currentId = this.notes.length; this.notes.push(""); DB.saveData('notes', this.notes); $('note-textarea').value = ""; $('note-editor').style.display = 'block'; $('note-textarea').focus(); },
+            openNote: function(id) { this.currentId = id; $('note-textarea').value = this.notes[id]; $('note-editor').style.display = 'block'; },
+            saveCurrent: function() { if(this.currentId !== null) { this.notes[this.currentId] = $('note-textarea').value; DB.saveData('notes', this.notes); } },
+            closeEditor: function() { this.saveCurrent(); $('note-editor').style.display = 'none'; this.render(); },
+            deleteNote: function() { if(this.currentId !== null) { this.notes.splice(this.currentId, 1); DB.saveData('notes', this.notes); this.closeEditor(); } }
+        };
+
+        const PhoneApp = { num: '', add: function(n) { this.num += n; $('phone-display').innerText = this.num; }, del: function() { this.num = this.num.slice(0,-1); $('phone-display').innerText = this.num; }, call: function() { if(this.num) { $('phone-display').innerText = "Calling..."; setTimeout(() => { this.num = ''; $('phone-display').innerText = ''; }, 3000); } } };
+
+        const SafariApp = { load: function() { let url = $('safari-url').value; if(!url.startsWith('http')) url = 'https://' + url; $('safari-url').value = url; $('safari-frame').src = url; }, back: function() { history.back(); }, forward: function() { history.forward(); } };
+
+        const CameraApp = {
+            stream: null, facingMode: 'environment', mode: 'photo', mediaRecorder: null, recordedChunks: [],
+            init: async function() {
+                const video = $('camera-view');
+                try {
+                    if(this.stream) this.stream.getTracks().forEach(t => t.stop());
+                    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error("API no soportada");
+                    this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: this.facingMode }, audio: true });
+                    video.srcObject = this.stream; video.play(); this.updateThumb();
+                    video.style.transform = this.facingMode === 'user' ? 'scaleX(-1)' : 'scaleX(1)';
+                } catch(e) { CustomAlert.show("Cámara Error", "No se pudo acceder a la cámara."); }
+            },
+            toggleCamera: function() { this.facingMode = this.facingMode === 'user' ? 'environment' : 'user'; this.init(); },
+            toggleMode: function() {
+                const sw = $('cam-switch');
+                if(this.mode === 'photo') { this.mode = 'video'; sw.classList.add('video'); sw.querySelector('.cam-switch-thumb').innerText = '🎥'; } 
+                else { this.mode = 'photo'; sw.classList.remove('video'); sw.querySelector('.cam-switch-thumb').innerText = '📷'; }
+            },
+            handleShutter: function() {
+                if(!this.stream) return;
+                const btn = $('shutter-btn');
+                if(this.mode === 'photo') {
+                    const iris = $('camera-iris'); iris.classList.add('blink'); setTimeout(() => iris.classList.remove('blink'), 150);
+                    const canvas = $('camera-canvas'); const video = $('camera-view'); canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+                    const ctx = canvas.getContext('2d'); if(this.facingMode === 'user') { ctx.translate(canvas.width, 0); ctx.scale(-1, 1); }
+                    ctx.drawImage(video, 0, 0); const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+                    DB.saveMedia({type: 'photo', data: dataUrl}).then(() => this.updateThumb());
+                } else {
+                    if(this.mediaRecorder && this.mediaRecorder.state === 'recording') { this.mediaRecorder.stop(); btn.classList.remove('recording'); } 
+                    else {
+                        this.recordedChunks = []; this.mediaRecorder = new MediaRecorder(this.stream);
+                        this.mediaRecorder.ondataavailable = (e) => { if(e.data.size > 0) this.recordedChunks.push(e.data); };
+                        this.mediaRecorder.onstop = () => { const blob = new Blob(this.recordedChunks, { type: 'video/webm' }); const reader = new FileReader(); reader.readAsDataURL(blob); reader.onloadend = () => { DB.saveMedia({type: 'video', data: reader.result}).then(() => this.updateThumb()); }; };
+                        this.mediaRecorder.start(); btn.classList.add('recording');
+                    }
+                }
+            },
+            updateThumb: async function() { const media = await DB.loadMedia(); if(media && media.length > 0) { const last = media[media.length-1]; if(last.type === 'photo') $('camera-thumb').style.backgroundImage = `url(${last.data})`; else $('camera-thumb').style.backgroundImage = `none`; } }
+        };
+
+        const PhotosApp = {
+            media: [], currentIndex: 0,
+            render: async function() {
+                const grid = $('photos-grid'); this.media = await DB.loadMedia() || []; grid.innerHTML = '';
+                this.media.forEach((m, i) => {
+                    if(m.type === 'photo') grid.innerHTML += `<div class="photo-thumb" style="background-image:url(${m.data})" onclick="PhotosApp.openMedia(${i}); SystemSounds.play('click')"></div>`;
+                    else grid.innerHTML += `<div class="photo-thumb video" style="background:#333;" onclick="PhotosApp.openMedia(${i}); SystemSounds.play('click')"></div>`;
+                });
+            },
+            openMedia: function(i) {
+                const m = this.media[i]; this.currentIndex = i; $('photo-viewer').style.display = 'flex'; $('photo-index-txt').innerText = `${i+1} of ${this.media.length}`;
+                if(m.type === 'photo') { $('photo-full').style.display='block'; $('video-full').style.display='none'; $('photo-full').src = m.data; } 
+                else { $('photo-full').style.display='none'; $('video-full').style.display='block'; $('video-full').src = m.data; $('video-full').play(); }
+            },
+            closeMedia: function() { $('photo-viewer').style.display = 'none'; $('video-full').pause(); },
+            deleteMedia: async function() { const m = this.media[this.currentIndex]; await DB.deleteMedia(m.id); this.closeMedia(); this.render(); }
+        };
+
+        // --- SIRI (CORREGIDA: Hace Scroll Arriba/Abajo Libremente) ---
+        const Siri = {
+            isOpen: false, recognition: null, synth: window.speechSynthesis, isListening: false,
+            init: function() {
+                window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if(window.SpeechRecognition) {
+                    this.recognition = new SpeechRecognition(); this.recognition.lang = 'es-ES';
+                    this.recognition.onresult = (e) => { this.processCommand(e.results[0][0].transcript.toLowerCase()); };
+                    this.recognition.onend = () => { this.isListening = false; $('siri-mic').classList.remove('listening'); };
+                }
+            },
+            open: function() {
+                if(!isUnlocked) return;
+                this.isOpen = true; $('siri-overlay').classList.add('active'); SystemSounds.play('unlock');
+                if($('siri-content').innerHTML.trim() === '') { this.speak("Hola, soy Siri. Puedo buscar información, consultar el clima o abrir apps."); }
+            },
+            close: function() { this.isOpen = false; $('siri-overlay').classList.remove('active'); if(this.recognition) this.recognition.stop(); SystemSounds.play('click');},
+            toggleListening: function() {
+                if(!this.recognition) { this.reply("Micrófono no disponible. Escribe tu consulta abajo."); return; }
+                if(this.isListening) { this.recognition.stop(); this.isListening = false; $('siri-mic').classList.remove('listening'); } 
+                else { this.isListening = true; $('siri-mic').classList.add('listening'); try { this.recognition.start(); } catch(e){} }
+            },
+            sendText: function() { const text = $('siri-text-input').value; if(text.trim()) { $('siri-text-input').value = ''; this.processCommand(text.toLowerCase()); } },
+            reply: function(text) { $('siri-content').innerHTML += `<div class="siri-bubble" style="align-self: flex-start; background: rgba(0,0,0,0.5);">${text}</div>`; $('siri-content').scrollTop = $('siri-content').scrollHeight; this.speak(text); },
+            userSay: function(text) { $('siri-content').innerHTML += `<div class="siri-bubble" style="align-self: flex-end;">${text}</div>`; $('siri-content').scrollTop = $('siri-content').scrollHeight; },
+            speak: function(text) { if(this.synth) { const ut = new SpeechSynthesisUtterance(text.replace(/[*_]/g, '')); ut.lang = 'es-ES'; ut.pitch = 1; ut.rate = 1.1; this.synth.speak(ut); } },
+            processCommand: async function(cmd) {
+                this.userSay(cmd);
+                const normalizedCmd = cmd.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
+                if(normalizedCmd === "hola" || normalizedCmd.includes("hola siri") || normalizedCmd === "buenos dias" || normalizedCmd === "buenas tardes") { this.reply("¡Hola! ¿En qué te puedo ayudar hoy?"); return; }
+                if(normalizedCmd.includes("como estas")) { this.reply("Estoy excelente y lista para ayudarte. ¿Qué necesitas?"); return; }
+                if(normalizedCmd.includes("quien eres") || normalizedCmd.includes("que eres")) { this.reply("Soy Siri, tu asistente virtual."); return; }
+                if(normalizedCmd.includes("abre") || normalizedCmd.includes("abrir") || normalizedCmd.includes("inicia")) {
+                    setTimeout(()=> {
+                        if(normalizedCmd.includes("nota")) { this.reply("Abriendo Notas..."); setTimeout(()=> { this.close(); AppManager.open('notes');}, 1000); }
+                        else if(normalizedCmd.includes("camara") || normalizedCmd.includes("foto")) { this.reply("Preparando la Cámara..."); setTimeout(()=> { this.close(); AppManager.open('camera');}, 1000); }
+                        else if(normalizedCmd.includes("ajuste") || normalizedCmd.includes("configuracion")) { this.reply("Abriendo Ajustes..."); setTimeout(()=> { this.close(); AppManager.open('settings');}, 1000); }
+                        else if(normalizedCmd.includes("musica") || normalizedCmd.includes("cancion") || normalizedCmd.includes("itunes")) { this.reply("Aquí tienes tu Música..."); setTimeout(()=> { this.close(); AppManager.open('music');}, 1000); }
+                        else if(normalizedCmd.includes("reloj") || normalizedCmd.includes("alarma")) { this.reply("Abriendo el Reloj..."); setTimeout(()=> { this.close(); AppManager.open('clock');}, 1000); }
+                        else if(normalizedCmd.includes("mapa") || normalizedCmd.includes("navegacion")) { this.reply("Abriendo Mapas..."); setTimeout(()=> { this.close(); AppManager.open('maps');}, 1000); }
+                        else if(normalizedCmd.includes("calendario") || normalizedCmd.includes("fecha")) { this.reply("Abriendo el Calendario..."); setTimeout(()=> { this.close(); AppManager.open('calendar');}, 1000); }
+                        else if(normalizedCmd.includes("mensaje") || normalizedCmd.includes("sms") || normalizedCmd.includes("chat")) { this.reply("Abriendo Mensajes..."); setTimeout(()=> { this.close(); AppManager.open('messages');}, 1000); }
+                        else if(normalizedCmd.includes("clima") || normalizedCmd.includes("tiempo")) { this.reply("Consultando el tiempo..."); setTimeout(()=> { this.close(); AppManager.open('weather');}, 1000); }
+                        else if(normalizedCmd.includes("safari") || normalizedCmd.includes("navegador") || normalizedCmd.includes("internet")) { this.reply("Abriendo Safari..."); setTimeout(()=> { this.close(); AppManager.open('safari');}, 1000); }
+                        else { this.reply("Lo siento, no encuentro esa aplicación."); }
+                    }, 500); return;
+                }
+                if(normalizedCmd.includes("cuanto es") || normalizedCmd.includes("calcula")) {
+                    try {
+                        let mathStr = normalizedCmd.replace("cuanto es", "").replace("calcula", "").replace("por", "*").replace("entre", "/").replace("mas", "+").replace("menos", "-").replace("x", "*").trim();
+                        let cleanMath = mathStr.replace(/[^0-9\+\-\*\/\.\(\)]/g, "");
+                        if(cleanMath) { let result = eval(cleanMath); this.reply(`El resultado es ${result}.`); return; }
+                    } catch(e) { }
+                }
+                if(normalizedCmd.includes("clima") || normalizedCmd.includes("tiempo") || normalizedCmd.includes("llover") || normalizedCmd.includes("calor") || normalizedCmd.includes("frio")) {
+                    let city = cmd.replace("cómo está el clima en", "").replace("el clima en", "").replace("qué tiempo hace en", "").replace("va a llover en", "").trim();
+                    if(!city || city.length < 3 || city.includes("clima") || city.includes("tiempo")) city = "Madrid";
+                    this.reply(`Revisando las condiciones para ${city}...`);
+                    try {
+                        const geo = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=es&format=json`).then(r=>r.json());
+                        if(!geo.results || geo.results.length === 0) throw new Error();
+                        const weather = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${geo.results[0].latitude}&longitude=${geo.results[0].longitude}&current_weather=true`).then(r=>r.json());
+                        const t = Math.round(weather.current_weather.temperature); let feeling = t > 28 ? "Hace bastante calor" : (t < 10 ? "Hace frío" : "El clima es agradable");
+                        this.reply(`Actualmente hace ${t} grados en ${geo.results[0].name}. ${feeling}.`);
+                    } catch(e) { this.reply("No pude conectar con la torre meteorológica."); }
+                    return;
+                }
+                if(normalizedCmd.includes("quien es") || normalizedCmd.includes("que es") || normalizedCmd.includes("quien fue") || normalizedCmd.includes("que fue") || normalizedCmd.includes("donde esta") || normalizedCmd.includes("busca")) {
+                    let q = cmd.replace("quién es", "").replace("quien es", "").replace("qué es", "").replace("que es", "").replace("quien fue", "").replace("que significa", "").replace("busca sobre", "").replace("busca", "").replace("dime sobre", "").trim();
+                    this.reply(`Déjame buscar información sobre ${q}...`);
+                    try {
+                        const res = await fetch(`https://es.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&exintro=1&explaintext=1&generator=search&gsrsearch=${encodeURIComponent(q)}&gsrlimit=1&origin=*`);
+                        const data = await res.json();
+                        if(data.query && data.query.pages) {
+                            const pages = data.query.pages; const pageId = Object.keys(pages)[0]; let text = pages[pageId].extract; if(!text) throw new Error();
+                            let sentences = text.match(/[^.!?]+[.!?]+/g) || [text]; let shortText = sentences[0] + (sentences[1] ? " " + sentences[1] : "");
+                            if(shortText.length > 250) shortText = shortText.substring(0, 250) + "..."; this.reply(shortText);
+                        } else { this.reply(`No encontré ninguna entrada exacta para ${q}.`); }
+                    } catch(e) { this.reply("Parece que mi conexión de datos falló."); }
+                    return;
+                }
+                setTimeout(() => {
+                    const fallbacks = ["No estoy muy segura de entender a qué te refieres.", "Prueba preguntarme 'Quién es Albert Einstein' o 'Dime el clima en Bogotá'.", "Lo siento, no comprendí eso."];
+                    this.reply(fallbacks[Math.floor(Math.random() * fallbacks.length)]);
+                }, 1000);
+            }
+        };
+
+        // --- ARRANQUE Y BOTÓN POWER (CORREGIDO: Pantalla Negra Absoluta) ---
+        let isPoweredOn = true;
+        window.onload = async function() {
+            resizePhone(); await DB.init();
+            const powerBtn = $('btn-power');
+            if(powerBtn) {
+                powerBtn.addEventListener('click', () => {
+                    isPoweredOn = !isPoweredOn; const glass = $('screen-glass');
+                    if(!isPoweredOn) {
+                        // LA PANTALLA AHORA SE APAGA EN NEGRO PURO
+                        glass.classList.add('screen-off'); 
+                        if(MusicApp.audio) MusicApp.audio.pause();
+                        SystemSounds.play('lock');
+                    } else {
+                        glass.classList.remove('screen-off'); 
+                        const boot = $('boot-screen');
+                        if(boot) { boot.style.display = 'flex'; boot.style.opacity = '1'; setTimeout(() => { boot.style.opacity = '0'; setTimeout(() => boot.style.display = 'none', 1000); }, 1500); }
+                        AppManager.goHome(); isUnlocked = false; $('lock-screen').classList.add('active'); $('home-screen').classList.remove('active'); $('status-bar').className = 'trans';
+                        if(sliderThumb) { sliderThumb.style.transform = `translateX(2px)`; $('slider-text').style.opacity = 1; }
+                    }
+                });
+            }
+            if(sliderContainer && sliderThumb) { maxDrag = sliderContainer.offsetWidth - sliderThumb.offsetWidth - 4; }
+            Siri.init(); updateTime();
+            setTimeout(() => { const boot = $('boot-screen'); if(boot) { boot.style.opacity = '0'; setTimeout(() => boot.style.display = 'none', 1000); } }, 2000);
+        };
+    </script>
+</body>
+</html>
